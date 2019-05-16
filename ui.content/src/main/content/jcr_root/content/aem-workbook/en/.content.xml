@@ -2,14 +2,14 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
           jcr:primaryType="cq:Page">
     <jcr:content
-            cq:allowedTemplates="[/apps/example/templates/.*]"
+            cq:allowedTemplates="[/apps/aem-workbook/templates/pages/home/.*]"
             cq:deviceGroups="[/etc/mobile/groups/responsive]"
             jcr:primaryType="nt:unstructured"
-            jcr:title="example"
+            jcr:title="English"
             sling:redirect="{Boolean}true"
             sling:redirectStatus="{Long}302"
             sling:resourceType="foundation/components/redirect"
-            redirectTarget="/content/example/en/index">
+            redirectTarget="/content/aem-workbook/en/index">
         <image jcr:primaryType="nt:unstructured">
             <file/>
         </image>
