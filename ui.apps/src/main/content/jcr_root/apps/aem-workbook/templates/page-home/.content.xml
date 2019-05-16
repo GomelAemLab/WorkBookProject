@@ -3,7 +3,7 @@
     jcr:description="Template for initial or main page of the site."
     jcr:primaryType="cq:Template"
     jcr:title="aem-workbook Home Page"
-    allowedPaths="[/content/aem-workbook]"
+    allowedPaths="[/content/aem-workbook/en]"
     ranking="{Long}100">
     <jcr:content
         jcr:primaryType="cq:PageContent"

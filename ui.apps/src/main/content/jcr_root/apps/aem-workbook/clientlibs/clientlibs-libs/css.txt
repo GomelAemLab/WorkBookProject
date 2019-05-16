@@ -2,7 +2,18 @@
 # Copyright 2019 EPAM Systems company
 ###############################################################################
 
-#    Main jscripts
-#base=js
+#    <!-- Stylesheets -->
+#base=css
+bootstrap.min.css
 
-main.js
+#    <!-- Fonts -->
+#base=resources/font
+font-awesome.min.css
+
+#base=css
+slicknav.min.css
+owl.carousel.min.css
+magnific-popup.css
+animate.css
+
+

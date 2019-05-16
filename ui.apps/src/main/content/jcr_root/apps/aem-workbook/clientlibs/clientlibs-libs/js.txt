@@ -2,7 +2,10 @@
 # Copyright 2019 EPAM Systems company
 ###############################################################################
 
-#    Main jscripts
 #base=js
 
-main.js
+bootstrap.min.js
+jquery.slicknav.min.js
+owl.carousel.min.js
+jquery.sticky-sidebar.min.js
+jquery.magnific-popup.min.js
