@@ -1,0 +1,27 @@
+.event-inputs {
+    width: 40%;
+}
+
+.event {
+	border: 2px solid #673AB7;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+}
+.event input {
+    font-size: 17px;
+    box-sizing: border-box;
+    width: 97%;
+}
+
+input[type="text"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.event span {
+	display: block;
+    font-style: oblique;
+    font-size: 17px;
+	margin-bottom: 5px;    
+}
