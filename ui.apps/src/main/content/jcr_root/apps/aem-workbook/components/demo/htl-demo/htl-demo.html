@@ -1,0 +1,35 @@
+<h1>The component to demonstrate features of the HTL</h1>
+
+<h2>
+    <span>
+        <a href="https://docs.adobe.com/content/help/en/experience-manager-htl/using/htl/global-objects.html">
+            ${properties['objects/title'] ? properties['objects/title'] : "HTL Global Objects"}
+        </a>
+    </span><span>demonstrator</span>
+</h2>
+<div data-sly-test="${properties['objects/props'] == 'checked'}">
+    <h3>properties</h3>
+    <h4>Getting all properties of the current Resource by ' data-sly-list="\${properties}" ':</h4>
+    <ul data-sly-list="${properties}">
+        <li>${item}</li>
+    </ul>
+    <sly data-sly-test="${properties.sling:resourceType}">
+        <h4>Getting value of the 'resourceType' property of the current resource by ' \${properties.sling:resourceType} ':</h4>
+        <ul>
+            <li>${properties.sling:resourceType}</li>
+        </ul>
+    </sly>
+</div>
+<div data-sly-test="${properties['objects/pageprops'] == 'checked'}">
+    <h3>pageProperties</h3>
+    <h4>Getting all page properties of the current Page by ' data-sly-repeat="\${pageProperties}" ':</h4>
+    <ul>
+        <li data-sly-repeat="${pageProperties}">${item}</li>
+    </ul>
+    <sly data-sly-test="${pageProperties.cq:template}">
+        <h4 data-sly-test="${pageProperties.cq:template}">Getting path of the Template of the current Page by ' \${pageProperties.cq:template} ':</h4>
+        <ul>
+            <li>${pageProperties.cq:template}</li>
+        </ul>
+    </sly>
+</div>
