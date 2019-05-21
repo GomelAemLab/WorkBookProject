@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+    <primaryNodeType>sling:OsgiConfig</primaryNodeType>
+    <property>
+        <name>user.mapping</name>
+        <values>
+            <value>by.gomel.epam.core:serviceCRUD=aemWorkBook</value>
+        </values>
+    </property>
+</node>

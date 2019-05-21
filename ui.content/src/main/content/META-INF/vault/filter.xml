@@ -3,4 +3,5 @@
     <filter root="/conf/aem-workbook"/>
     <filter root="/content/aem-workbook"/>
     <filter root="/content/dam/aem-workbook"/>
+    <filter root="/home/users/system/aem-workbook" mode="merge"/>
 </workspaceFilter>
