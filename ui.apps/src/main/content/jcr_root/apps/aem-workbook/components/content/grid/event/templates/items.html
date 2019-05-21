@@ -1,0 +1,21 @@
+<sly data-sly-template.base="${ @ item}}">
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">${item.eventName}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Holder: ${item.eventUser}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">${item.eventDate} : ${item.eventTime}</h6>
+                <p class="card-text">Bla-bla-bla.</p>
+                <hr/>
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-7">
+                        <a href="#" class="btn  btn-outline-info btn-sm btn-block">View details</a>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-5 mt-3 mt-md-0">
+                        <a href="#" class="btn  btn-outline-primary btn-sm btn-block">Subscribe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sly>
