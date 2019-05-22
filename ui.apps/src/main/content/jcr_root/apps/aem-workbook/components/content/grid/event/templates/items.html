@@ -1,10 +1,12 @@
 <sly data-sly-template.base="${ @ item}}">
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-12 col-md-6 col-lg-4 mt-3">
         <div class="card">
+            <div class="card-header">
+                ${item.eventName}
+            </div>
             <div class="card-body">
-                <h5 class="card-title">${item.eventName}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Holder: ${item.eventUser}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">${item.eventDate} : ${item.eventTime}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">${item.eventTime} / ${item.eventDate}</h6>
                 <p class="card-text">Bla-bla-bla.</p>
                 <hr/>
                 <div class="row">
