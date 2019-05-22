@@ -99,6 +99,9 @@
                             <target>/apps/aem-workbook/install</target>
                         </embedded>
                     </embeddeds>
+                    <properties>
+                        <acHandling>overwrite</acHandling>
+                    </properties>
                 </configuration>
             </plugin>
         </plugins>

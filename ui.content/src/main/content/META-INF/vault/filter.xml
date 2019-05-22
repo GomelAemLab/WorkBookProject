@@ -4,4 +4,6 @@
     <filter root="/content/aem-workbook"/>
     <filter root="/content/dam/aem-workbook"/>
     <filter root="/home/users/system/aem-workbook" mode="merge"/>
+    <filter root="/content/events" mode="merge"/>
+    <filter root="/content/events/rep:policy" mode="merge"/>
 </workspaceFilter>
