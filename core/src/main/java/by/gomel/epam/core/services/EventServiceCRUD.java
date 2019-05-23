@@ -1,13 +1,14 @@
 package by.gomel.epam.core.services;
 
-import by.gomel.epam.core.beans.Event;
+import by.gomel.epam.core.beans.Event.Event;
+import by.gomel.epam.core.execption.JcrException;
 
 import java.util.Date;
 import java.util.List;
 
 public interface EventServiceCRUD {
 
-    String create(Event event);
+    String create(Event event) throws JcrException;
 
     Event getEvent(String eventPath);
 

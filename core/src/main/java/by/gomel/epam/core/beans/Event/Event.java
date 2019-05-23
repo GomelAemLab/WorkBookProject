@@ -1,14 +1,19 @@
-package by.gomel.epam.core.beans;
+package by.gomel.epam.core.beans.Event;
 
+import by.gomel.epam.core.beans.NodeProperty;
 import com.google.gson.annotations.SerializedName;
 
 public class Event {
 
+    @NodeProperty
     @SerializedName(value = "eventText")
     private String eventName;
 
+    private String eventFolderPath;
     private String eventDate;
+    @NodeProperty
     private String eventTime;
+    @NodeProperty
     private String eventUser;
 
     public String getEventName() {
@@ -41,6 +46,13 @@ public class Event {
 
     public void setEventUser(String eventUser) {
         this.eventUser = eventUser;
+    }
+
+    public String getEventFolderPath() {
+        return eventFolderPath;
+    }
+    public void setEventFolderPath(String eventFolderPath) {
+        this.eventFolderPath = eventFolderPath;
     }
 }
 
