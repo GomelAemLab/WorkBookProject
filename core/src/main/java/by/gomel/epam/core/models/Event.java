@@ -16,6 +16,9 @@ public class Event {
     private String eventName;
 
     private String eventFolderPath;
+
+    @NodeProperty
+    @Inject
     private String eventDate;
     @NodeProperty
     @Inject

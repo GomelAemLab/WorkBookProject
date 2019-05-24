@@ -17,7 +17,7 @@ public interface EventServiceCRUD {
 
     List<Event> getEventsFromDate(String date) throws ValidationError, HttpException;
 
-    List<Event> getEvents();
+    List<Event> getEvents() throws JcrException;
 
     Event update(String eventPath);
 
