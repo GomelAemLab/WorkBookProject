@@ -1,2 +1,25 @@
 <!-- The container of Events -->
 <div>Container</div>
+
+<sly data-sly-use.itemContainer="by.gomel.epam.core.models.EventItemContainer"
+     data-sly-use.items="aem-workbook/components/content/grid/event/templates/items.html"></sly>
+
+<sly data-sly-test.eventList="${itemContainer.eventItems}">
+    <div class="row mt-3 mb-3">
+        <sly data-sly-list="${eventList}">
+            <sly data-sly-call="${items.base @ item=item }"></sly>
+        </sly>
+    </div>
+</sly>
+<sly data-sly-test="${!eventList}">
+    <sly data-sly-test.isProd="${wcmmode.disabled}">
+        <div class="alert alert-warning" role="alert">
+            No event data found!
+        </div>
+    </sly>
+    <sly data-sly-test="${!isProd}">
+        <div class="alert alert-warning" role="alert">
+            The event data is not received from the service EventItemContainer!
+        </div>
+    </sly>
+</sly>
