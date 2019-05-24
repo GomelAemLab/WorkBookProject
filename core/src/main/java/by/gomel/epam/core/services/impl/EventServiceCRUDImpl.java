@@ -1,11 +1,15 @@
 package by.gomel.epam.core.services.impl;
 
-import by.gomel.epam.core.beans.Event.Event;
+import by.gomel.epam.core.execption.HttpException;
+import by.gomel.epam.core.execption.NotFoundException;
+import by.gomel.epam.core.models.Event;
 import by.gomel.epam.core.beans.Event.EventAdaptToNode;
 import by.gomel.epam.core.execption.JcrException;
 import by.gomel.epam.core.services.EventServiceCRUD;
+import by.gomel.epam.core.validation.DateHelper;
 import com.day.cq.commons.jcr.JcrUtil;
 import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.service.component.annotations.Activate;
@@ -27,7 +31,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     private final Map<String, Object> param = new HashMap<>();
 
     @Reference
-    public ResourceResolverFactory resolverFactory;
+    private ResourceResolverFactory resolverFactory;
 
     @Activate
     @Modified
@@ -38,7 +42,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     @Override
     public String create(Event event) throws JcrException {
 
-        ResourceResolver resolver = null;
+        ResourceResolver resolver;
         Session session = null;
         String nodeName;
         try {
@@ -71,8 +75,29 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     }
 
     @Override
-    public List<Event> getEvents(Date date) {
-        return null;
+    public List<Event> getEventsFromDate(String date) throws HttpException {
+        DateHelper helper = new DateHelper(date);
+        final String path = helper.validateAndGetPath();
+        ResourceResolver resolver;
+        List<Event> eventList = new ArrayList<>();
+        try {
+            resolver = resolverFactory.getServiceResourceResolver(param);
+            final Resource resourceDateFolder = resolver.getResource(path);
+            if (resourceDateFolder == null) {
+                throw new NotFoundException();
+            }
+            resourceDateFolder.getChildren().forEach(resource -> {
+                        Event ev = resource.adaptTo(Event.class);
+                        if (ev != null) {
+                            ev.setEventDate(date);
+                            eventList.add(ev);
+                        }
+                    }
+            );
+        } catch (LoginException e) {
+            throw new JcrException();
+        }
+        return eventList;
     }
 
     @Override

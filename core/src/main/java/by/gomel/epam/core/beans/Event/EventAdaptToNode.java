@@ -1,6 +1,7 @@
 package by.gomel.epam.core.beans.Event;
 
 import by.gomel.epam.core.beans.NodeProperty;
+import by.gomel.epam.core.models.Event;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;

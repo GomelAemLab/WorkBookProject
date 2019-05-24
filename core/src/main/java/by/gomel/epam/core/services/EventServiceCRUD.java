@@ -1,9 +1,10 @@
 package by.gomel.epam.core.services;
 
-import by.gomel.epam.core.beans.Event.Event;
+import by.gomel.epam.core.execption.HttpException;
+import by.gomel.epam.core.models.Event;
 import by.gomel.epam.core.execption.JcrException;
+import by.gomel.epam.core.execption.ValidationError;
 
-import java.util.Date;
 import java.util.List;
 
 public interface EventServiceCRUD {
@@ -14,7 +15,7 @@ public interface EventServiceCRUD {
 
     List<Event> getEvents(String userName);
 
-    List<Event> getEvents(Date date);
+    List<Event> getEventsFromDate(String date) throws ValidationError, HttpException;
 
     List<Event> getEvents();
 

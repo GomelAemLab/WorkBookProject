@@ -1,6 +1,6 @@
 package by.gomel.epam.core.servlets;
 
-import by.gomel.epam.core.beans.Event.Event;
+import by.gomel.epam.core.models.Event;
 import by.gomel.epam.core.execption.JcrException;
 import by.gomel.epam.core.services.EventServiceCRUD;
 import by.gomel.epam.core.validation.EventJsonValidation;
