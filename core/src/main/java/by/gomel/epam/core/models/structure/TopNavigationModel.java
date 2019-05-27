@@ -29,6 +29,7 @@ public class TopNavigationModel {
 
     /**
      * Returns path of the root page.
+     *
      * @return
      */
     public String getHomeRootPagePath() {
