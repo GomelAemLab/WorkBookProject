@@ -46,7 +46,9 @@ public class TopNavigationModel {
         List<Page> pages = new LinkedList<>();
         for (Resource childPage : rootResource.getChildren()) {
             Page page = childPage.adaptTo(Page.class);
-            pages.add(page);
+            if (page != null) {
+                pages.add(page);
+            }
         }
         return pages;
     }
