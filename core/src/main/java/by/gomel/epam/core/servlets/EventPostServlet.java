@@ -1,8 +1,10 @@
 package by.gomel.epam.core.servlets;
 
-import by.gomel.epam.core.beans.Event;
+import by.gomel.epam.core.models.Event;
+import by.gomel.epam.core.execption.JcrException;
+import by.gomel.epam.core.services.EventServiceCRUD;
 import by.gomel.epam.core.validation.EventJsonValidation;
-import by.gomel.epam.core.validation.ValidationError;
+import by.gomel.epam.core.execption.ValidationError;
 import com.google.gson.Gson;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -10,6 +12,7 @@ import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -28,6 +31,9 @@ public class EventPostServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUid = 1L;
 
+    @Reference
+    EventServiceCRUD serviceCRUD;
+
     @Override
     protected void doPost(final SlingHttpServletRequest req,
                           final SlingHttpServletResponse resp) throws ServletException, IOException {
@@ -37,10 +43,12 @@ public class EventPostServlet extends SlingAllMethodsServlet {
             final Gson gson = new Gson();
             final Event event = gson.fromJson(json, Event.class);
             new EventJsonValidation(event).validate();
+
+            serviceCRUD.create(event);
         } catch (IOException e) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-        } catch (ValidationError e) {
-            resp.sendError(e.getStatus());
+        } catch (JcrException | ValidationError e) {
+            resp.sendError(e.getStatusCode(), e.getMessage());
         }
     }
 }

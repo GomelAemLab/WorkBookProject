@@ -1,6 +1,7 @@
 package by.gomel.epam.core.validation;
 
-import by.gomel.epam.core.beans.Event;
+import by.gomel.epam.core.models.Event;
+import by.gomel.epam.core.execption.ValidationError;
 
 
 public class EventJsonValidation {
@@ -11,6 +12,7 @@ public class EventJsonValidation {
     }
 
     public void validate() throws ValidationError {
-        //throw new ValidationError("");
+            DateHelper dateValidation = new DateHelper(event.getEventDate());
+            event.setEventFolderPath(dateValidation.validateAndGetPath());
     }
 }

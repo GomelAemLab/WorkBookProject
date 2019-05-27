@@ -41,8 +41,12 @@
                     <instructions>
                         <!-- Import any version of javax.inject, to allow running on multiple versions of AEM -->
                         <Import-Package>javax.inject;version=0.0.0,*</Import-Package>
+                        <Sling-Initial-Content>
+                            SLING-INF/content;path:=/libs/system/config;overwrite:=true;
+                        </Sling-Initial-Content>
+                        <Bundle-SymbolicName>by.gomel.epam.core</Bundle-SymbolicName>
                         <Sling-Model-Packages>
-                            by.gomel.epam.core
+                            by.gomel.epam.core.models
                         </Sling-Model-Packages>
                     </instructions>
                 </configuration>

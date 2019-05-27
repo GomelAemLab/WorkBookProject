@@ -1,25 +1,20 @@
 package by.gomel.epam.core.models;
 
-import by.gomel.epam.core.beans.Event;
+import by.gomel.epam.core.execption.JcrException;
 import by.gomel.epam.core.services.EventServiceCRUD;
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
-import java.util.Collections;
 import java.util.List;
 
-@Model(adaptables = Resource.class)
+@Model(adaptables = SlingHttpServletRequest.class)
 public class EventItemContainer {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
-
-    @Self
-    private Resource resource;
 
     @OSGiService
     private EventServiceCRUD eventServiceCRUD;
@@ -31,7 +26,11 @@ public class EventItemContainer {
 
     public List<Event> getEventItems() {
         if (eventServiceCRUD != null) {
-            return eventServiceCRUD.getEvents();
+            try {
+                return eventServiceCRUD.getEvents();
+            } catch (JcrException e) {
+                logger.error("service can't access to JCR");
+            }
         }
         logger.debug("EventServiceCRUD is null.");
         return null;

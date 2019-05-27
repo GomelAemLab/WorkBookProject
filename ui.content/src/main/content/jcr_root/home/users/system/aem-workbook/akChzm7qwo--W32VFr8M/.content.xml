@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+    jcr:primaryType="rep:SystemUser"
+    jcr:uuid="bb434a68-10c0-39d4-8379-f48be5fd6053"
+    rep:authorizableId="aemWorkBook"
+    rep:principalName="aemWorkBook"/>
