@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
 import java.util.List;
 
 @Model(adaptables = SlingHttpServletRequest.class)
@@ -25,14 +26,17 @@ public class EventItemContainer {
     }
 
     public List<Event> getEventItems() {
-        if (eventServiceCRUD != null) {
-            try {
-                return eventServiceCRUD.getEvents();
-            } catch (JcrException e) {
-                logger.error("service can't access to JCR");
-            }
+
+        if (eventServiceCRUD == null) {
+            logger.debug("EventServiceCRUD is null.");
+            return Collections.emptyList();
         }
-        logger.debug("EventServiceCRUD is null.");
-        return null;
+
+        try {
+            return eventServiceCRUD.getEvents();
+        } catch (JcrException e) {
+            logger.error("EventServiceCRUD service can't access to JCR by reason: {}", e.getMessage());
+            return Collections.emptyList();
+        }
     }
 }
