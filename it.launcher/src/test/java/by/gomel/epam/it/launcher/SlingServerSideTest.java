@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package by.gomel.epam.it.launcher;
+package com.company.it.launcher;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
 public class SlingServerSideTest extends SlingServerSideTestsBase 
 implements SlingRemoteTestParameters, SlingTestsCountChecker {
     
-    public static final String TEST_SELECTOR = "by.gomel.epam.it.tests";
+    public static final String TEST_SELECTOR = "com.company.it.tests";
     public static final int TESTS_AT_THIS_PATH = 1;
     
     public void checkNumberOfTests(int numberOfTestsExecuted) {

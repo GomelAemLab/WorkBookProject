@@ -18,7 +18,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>by.gomel.epam</groupId>
+        <groupId>com.company</groupId>
         <artifactId>aem-workbook</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -44,9 +44,9 @@
                         <Sling-Initial-Content>
                             SLING-INF/content;path:=/libs/system/config;overwrite:=true;
                         </Sling-Initial-Content>
-                        <Bundle-SymbolicName>by.gomel.epam.core</Bundle-SymbolicName>
+                        <Bundle-SymbolicName>com.company.core</Bundle-SymbolicName>
                         <Sling-Model-Packages>
-                            by.gomel.epam.core.models
+                            com.company.core.models
                         </Sling-Model-Packages>
                     </instructions>
                 </configuration>
