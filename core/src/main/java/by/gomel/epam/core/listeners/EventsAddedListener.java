@@ -36,7 +36,7 @@ public class EventsAddedListener implements ResourceChangeListener {
 
     @Activate
     public void activate() {
-        String pattern = EVENT_PATH + "(\\d+){3}/.+";
+        String pattern = EVENT_PATH + "(\\d+/){3}.+";
         pathToEventsPattern = Pattern.compile(pattern);
     }
 
