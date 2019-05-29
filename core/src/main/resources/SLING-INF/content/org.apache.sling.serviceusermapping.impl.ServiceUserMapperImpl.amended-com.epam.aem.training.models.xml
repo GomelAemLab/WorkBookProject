@@ -4,7 +4,7 @@
     <property>
         <name>user.mapping</name>
         <values>
-            <value>by.gomel.epam.core:serviceCRUD=aemWorkBook</value>
+            <value>com.company.core:serviceCRUD=aemWorkBook</value>
         </values>
     </property>
 </node>

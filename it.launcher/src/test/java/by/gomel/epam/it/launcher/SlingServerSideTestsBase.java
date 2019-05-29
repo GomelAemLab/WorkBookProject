@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package by.gomel.epam.it.launcher;
+package com.company.it.launcher;
 
 import static org.junit.Assert.fail;
 

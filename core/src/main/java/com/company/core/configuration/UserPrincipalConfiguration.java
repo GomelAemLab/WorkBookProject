@@ -1,0 +1,15 @@
+package com.company.core.configuration;
+
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.AttributeType;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
+
+@ObjectClassDefinition(name = "Service - WorkBook")
+public @interface UserPrincipalConfiguration {
+
+    @AttributeDefinition(
+            name = "Principal",
+            type = AttributeType.STRING
+    )
+    String user_mapping_principal() default "";
+}
