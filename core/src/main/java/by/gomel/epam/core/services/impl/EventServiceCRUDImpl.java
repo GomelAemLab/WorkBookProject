@@ -1,6 +1,7 @@
 package by.gomel.epam.core.services.impl;
 
 import by.gomel.epam.core.beans.Event.EventAdaptToNode;
+import by.gomel.epam.core.configuration.Configuration;
 import by.gomel.epam.core.execption.HttpException;
 import by.gomel.epam.core.execption.JcrException;
 import by.gomel.epam.core.execption.NotFoundException;
@@ -16,6 +17,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.metatype.annotations.Designate;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -27,6 +29,9 @@ import static by.gomel.epam.core.constants.Constants.EVENT_PATH;
 import static com.day.cq.commons.jcr.JcrConstants.NT_UNSTRUCTURED;
 
 @Component(service = EventServiceCRUD.class)
+@Designate(
+        ocd = Configuration.class
+)
 public class EventServiceCRUDImpl implements EventServiceCRUD {
 
     private final Map<String, Object> param = new HashMap<>();
@@ -36,8 +41,8 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
 
     @Activate
     @Modified
-    protected final void activate() {
-        param.put(ResourceResolverFactory.SUBSERVICE, "serviceCRUD");
+    protected final void activate(Configuration config) {
+        param.put(ResourceResolverFactory.SUBSERVICE, config.user_mapping_principal());
     }
 
     @Override
@@ -89,14 +94,14 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
             if (resourceDateFolder == null) {
                 throw new NotFoundException();
             }
-            setListEvents(eventList, resourceDateFolder);
+            addEventsToList(eventList, resourceDateFolder);
         } catch (LoginException e) {
             throw new JcrException();
         }
         return eventList;
     }
 
-    private void setListEvents(List<Event> eventList, Resource resourceDateFolder) {
+    private void addEventsToList(List<Event> eventList, Resource resourceDateFolder) {
         resourceDateFolder.getChildren().forEach(resource -> {
                     final Event ev = resource.adaptTo(Event.class);
                     if (ev != null) {
@@ -122,9 +127,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
                 Iterable<Resource> months = year.getChildren();
                 months.forEach(month -> {
                     Iterable<Resource> days = month.getChildren();
-                    days.forEach(day -> {
-                        setListEvents(eventList, day);
-                    });
+                    days.forEach(day -> addEventsToList(eventList, day));
                 });
             });
         } catch (LoginException e) {
@@ -142,6 +145,5 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     public boolean delete(String eventPath) {
         return false;
     }
-
-
 }
+
