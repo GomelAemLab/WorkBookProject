@@ -10,4 +10,8 @@ public class Constants {
     public static final int LOCKED = 423;
     public static final int NOT_FOUND = 404;
     public static final int BAD_REQUEST = 400;
+
+    public static final String JOB_TOPIC_EVENT_CREATED = "com/sling/events/job";
+    public static final String JOB_PROPERTY_EVENT_PATH = "event_path";
+
 }
