@@ -3,7 +3,6 @@ package by.gomel.epam.core.constants;
 public class Constants {
     public static final String EVENT_FOLDER_TYPE = "sling:OrderedFolder";
     public static final String EVENT_PATH = "/content/events/";
-    public static final String GLOB_EVENTS = EVENT_PATH+"**/*";
     public static final String DATE_ERROR_MSG = "a date cannot be processed";
     public static final String FOLDER_SEPARATOR = "/";
 
