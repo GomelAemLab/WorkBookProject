@@ -22,7 +22,6 @@ import static by.gomel.epam.core.constants.Constants.JOB_TOPIC_EVENT_CREATED;
 @Component(service = ResourceChangeListener.class,
         immediate = true,
         property = {
-                ResourceChangeListener.CHANGES + "=CHANGED",
                 ResourceChangeListener.CHANGES + "=ADDED",
                 ResourceChangeListener.PATHS + "=/content/events"
         })
@@ -43,22 +42,16 @@ public class EventsAddedListener implements ResourceChangeListener {
     public void onChange(List<ResourceChange> changes) {
 
         changes.forEach(change -> {
-            switch (change.getType()) {
-                case ADDED: {
-                    logger.debug("Change Type ADDED: {}", change);
-                    final String changePath = change.getPath();
-                    final Matcher m = pathToEventsPattern.matcher(changePath);
-                    if (m.matches()) {
-                        final Map<String, Object> props = new HashMap<>();
-                        props.put(JOB_PROPERTY_EVENT_PATH, changePath);
-                        jobManager.addJob(JOB_TOPIC_EVENT_CREATED, props);
-                        logger.debug("Job ADDED: {}", JOB_TOPIC_EVENT_CREATED);
-                    }
-                }
-                case CHANGED: {
-                    //do something
-                }
-                default: {
+
+            if (change.getType() == ResourceChange.ChangeType.ADDED) {
+                logger.debug("Change Type ADDED: {}", change);
+                final String changePath = change.getPath();
+                final Matcher m = pathToEventsPattern.matcher(changePath);
+                if (m.matches()) {
+                    final Map<String, Object> props = new HashMap<>();
+                    props.put(JOB_PROPERTY_EVENT_PATH, changePath);
+                    jobManager.addJob(JOB_TOPIC_EVENT_CREATED, props);
+                    logger.debug("Job ADDED: {}", JOB_TOPIC_EVENT_CREATED);
                 }
             }
         });
