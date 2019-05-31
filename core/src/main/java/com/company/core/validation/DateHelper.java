@@ -1,6 +1,7 @@
 package com.company.core.validation;
 
 import com.company.core.execption.ValidationError;
+import com.google.common.base.Strings;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -21,6 +22,9 @@ public class DateHelper {
 
         String path;
         try {
+            if (Strings.isNullOrEmpty(date)) {
+                throw new ValidationError(DATE_ERROR_MSG);
+            }
             LocalDate parsedDate = LocalDate.parse(date);
             final StringBuilder sb = new StringBuilder(EVENT_PATH);
             sb.append(parsedDate.getYear());

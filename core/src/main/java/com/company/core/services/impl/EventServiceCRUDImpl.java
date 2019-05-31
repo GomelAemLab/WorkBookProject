@@ -1,6 +1,6 @@
 package com.company.core.services.impl;
 
-import com.company.core.beans.Event.EventAdaptToNode;
+import com.company.core.beans.event.EventHelper;
 import com.company.core.configuration.UserPrincipal;
 import com.company.core.execption.HttpException;
 import com.company.core.execption.JcrException;
@@ -59,7 +59,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
             final Node node = JcrUtil.createPath(event.getEventFolderPath(), EVENT_FOLDER_TYPE, EVENT_FOLDER_TYPE, session, false);
             nodeName = UUID.randomUUID().toString();
             Node eventNode = node.addNode(nodeName, NT_UNSTRUCTURED);
-            new EventAdaptToNode(event).adaptTo(eventNode);
+            new EventHelper().setPropertiesToNode(event, eventNode);
             session.save();
         } catch (LoginException | RepositoryException e) {
             throw new JcrException();
@@ -145,5 +145,3 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
         return false;
     }
 }
-
-
