@@ -16,6 +16,7 @@ public class Constants {
     public static final String JOB_PROPERTY_EVENT_PATH = "event_path";
 
     public static final String HOME_ROOT_PAGE_PATH = "/content/aem-workbook";
+
     public static final String HOME_ROOT_PAGE_LOCALE_DEFAULT = PATH_DIVIDER + "en";
     public static final String HOME_ROOT_PAGE_PATH_DEFAULT = HOME_ROOT_PAGE_PATH + HOME_ROOT_PAGE_LOCALE_DEFAULT;
 }

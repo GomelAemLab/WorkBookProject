@@ -47,8 +47,8 @@ public class TopNavigationModel {
 
         String locale = UrlParseHelper.getLocaleFromPath(request.getRequestPathInfo().getResourcePath());
         currentHomeRootPagePath = (locale != null) ?
-                HOME_ROOT_PAGE_PATH + PATH_DIVIDER + locale.toLowerCase() :
-                HOME_ROOT_PAGE_PATH + PATH_DIVIDER + HOME_ROOT_PAGE_LOCALE_DEFAULT;
+                HOME_ROOT_PAGE_PATH + locale.toLowerCase() :
+                HOME_ROOT_PAGE_PATH + HOME_ROOT_PAGE_LOCALE_DEFAULT;
 
         Resource resource = request.getResourceResolver().resolve(getCurrentHomeRootPagePath());
 
