@@ -4,6 +4,7 @@ import com.company.core.beans.NodeProperty;
 import com.google.gson.annotations.SerializedName;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Optional;
 
 import javax.inject.Inject;
 
@@ -22,6 +23,7 @@ public class Event {
     private String eventDate;
     @NodeProperty
     @Inject
+    @Optional
     private String eventTime;
 
     @NodeProperty
