@@ -2,65 +2,89 @@
     <sly data-sly-test.showHtml="${properties.showHtml == 'checked'}"/>
     <sly data-sly-test.showJsp="${properties.showJsp == 'checked'}"/>
     <sly data-sly-test.showEsp="${properties.showEsp == 'checked'}"/>
-    <h1>The component to demonstrate Apache Sling Script Resolution</h1>
-    <h2>Scripts priority looks like below:</h2>
-    <div data-sly-test="${showHtml}"></div>
-    <div data-sly-test="${showJsp}"></div>
-    <div data-sly-test="${showEsp}"></div>
-    <div data-sly-test="${showHtml}">selector/selector.html.html</div>
-    <div data-sly-test="${showJsp}">selector/selector.html.jsp</div>
-    <div data-sly-test="${showEsp}">selector/selector.html.esp</div>
-    <div data-sly-test="${showHtml}">selector/selector.html.GET.html</div>
-    <div data-sly-test="${showJsp}">selector/selector.html.GET.jsp</div>
-    <div data-sly-test="${showEsp}">selector/selector.html.GET.esp</div>
-    <div data-sly-test="${showHtml}">selector.html.html</div>
-    <div data-sly-test="${showJsp}">selector.html.jsp</div>
-    <div data-sly-test="${showEsp}">selector.html.esp</div>
-    <div data-sly-test="${showHtml}">selector.html.GET.html</div>
-    <div data-sly-test="${showJsp}">selector.html.GET.jsp</div>
-    <div data-sly-test="${showEsp}">selector.html.GET.esp</div>
-    <div data-sly-test="${showJsp}">selector/html.jsp</div>
-    <div data-sly-test="${showJsp}">selector/html.GET.jsp</div>
-    <div data-sly-test="${showHtml}">selector/html.html</div>
-    <div data-sly-test="${showEsp}">selector/html.esp</div>
-    <div data-sly-test="${showHtml}">selector/html.GET.html</div>
-    <div data-sly-test="${showEsp}">selector/html.GET.esp</div>
-    <div data-sly-test="${showHtml}">selector/selector.html</div>
-    <div data-sly-test="${showJsp}">selector/selector.jsp</div>
-    <div data-sly-test="${showEsp}">selector/selector.esp</div>
-    <div data-sly-test="${showHtml}">selector/selector.GET.html</div>
-    <div data-sly-test="${showJsp}">selector/selector.GET.jsp</div>
-    <div data-sly-test="${showEsp}">selector/selector.GET.esp</div>
-    <div data-sly-test="${showHtml}">selector.html</div>
-    <div data-sly-test="${showJsp}">selector.jsp</div>
-    <div data-sly-test="${showEsp}">selector.esp</div>
-    <div data-sly-test="${showHtml}">selector.GET.html</div>
-    <div data-sly-test="${showJsp}">selector.GET.jsp</div>
-    <div data-sly-test="${showEsp}">selector.GET.esp</div>
-    <div data-sly-test="${showHtml}">selector/GET.html</div>
-    <div data-sly-test="${showJsp}">selector/GET.jsp</div>
-    <div data-sly-test="${showEsp}">selector/GET.esp</div>
-    <div data-sly-test="${showHtml}">resource-node.html.GET.html</div>
-    <div data-sly-test="${showHtml}">resource-node.html.html</div>
-    <div data-sly-test="${showJsp}">resource-node.html.GET.jsp</div>
-    <div data-sly-test="${showJsp}">resource-node.html.jsp</div>
-    <div data-sly-test="${showEsp}">resource-node.html.GET.esp</div>
-    <div data-sly-test="${showEsp}">resource-node.html.esp</div>
-    <div data-sly-test="${showJsp}">html.jsp</div>
-    <div data-sly-test="${showJsp}">html.GET.jsp</div>
-    <div data-sly-test="${showHtml}">html.html</div>
-    <div data-sly-test="${showEsp}">html.esp</div>
-    <div data-sly-test="${showHtml}">html.GET.html</div>
-    <div data-sly-test="${showEsp}">html.GET.esp</div>
-    <div data-sly-test="${showHtml}">resource-node.html</div>
-    <div data-sly-test="${showHtml}">resource-node.GET.html</div>
-    <div data-sly-test="${showJsp}">resource-node.GET.jsp</div>
-    <div data-sly-test="${showEsp}">resource-node.GET.esp</div>
-    <div data-sly-test="${showJsp}">resource-node.jsp</div>
-    <div data-sly-test="${showEsp}">resource-node.esp</div>
-    <div data-sly-test="${showHtml}">GET.html</div>
-    <div data-sly-test="${showJsp}">GET.jsp</div>
-    <div data-sly-test="${showEsp}">GET.esp</div>
+    <sly data-sly-test.showSelector="${properties.showSelector == 'checked'}"/>
+    <h1>The component to demonstrate</h1>
+    <h1>Apache Sling Script Resolution</h1>
+    <h2>'Scripts priority list' looks like below:</h2>
+    <div class="scripts-group">
+        <div data-sly-test="${showHtml && showSelector}">selector/selector.html.html</div>
+        <div data-sly-test="${showJsp && showSelector}">selector/selector.html.jsp</div>
+        <div data-sly-test="${showEsp && showSelector}">selector/selector.html.esp</div>
+        <div data-sly-test="${showHtml && showSelector}">selector/selector.html.GET.html</div>
+        <div data-sly-test="${showJsp && showSelector}">selector/selector.html.GET.jsp</div>
+        <div data-sly-test="${showEsp && showSelector}">selector/selector.html.GET.esp</div>
+    </div>
+    <div class="scripts-group indent">
+        <div data-sly-test="${showHtml && showSelector}">selector.html.html</div>
+        <div data-sly-test="${showJsp && showSelector}">selector.html.jsp</div>
+        <div data-sly-test="${showEsp && showSelector}">selector.html.esp</div>
+        <div data-sly-test="${showHtml && showSelector}">selector.html.GET.html</div>
+        <div data-sly-test="${showJsp && showSelector}">selector.html.GET.jsp</div>
+        <div data-sly-test="${showEsp && showSelector}">selector.html.GET.esp</div>
+    </div>
+    <div class="scripts-group">
+        <div data-sly-test="${showJsp && showSelector}">selector/html.jsp</div>
+        <div data-sly-test="${showJsp && showSelector}">selector/html.GET.jsp</div>
+        <div data-sly-test="${showHtml && showSelector}">selector/html.html</div>
+        <div data-sly-test="${showEsp && showSelector}">selector/html.esp</div>
+        <div data-sly-test="${showHtml && showSelector}">selector/html.GET.html</div>
+        <div data-sly-test="${showEsp && showSelector}">selector/html.GET.esp</div>
+    </div>
+    <div class="scripts-group">
+        <div data-sly-test="${showHtml && showSelector}">selector/selector.html</div>
+        <div data-sly-test="${showJsp && showSelector}">selector/selector.jsp</div>
+        <div data-sly-test="${showEsp && showSelector}">selector/selector.esp</div>
+        <div data-sly-test="${showHtml && showSelector}">selector/selector.GET.html</div>
+        <div data-sly-test="${showJsp && showSelector}">selector/selector.GET.jsp</div>
+        <div data-sly-test="${showEsp && showSelector}">selector/selector.GET.esp</div>
+    </div>
+    <div class="scripts-group indent">
+        <div data-sly-test="${showHtml && showSelector}">selector.html</div>
+        <div data-sly-test="${showJsp && showSelector}">selector.jsp</div>
+        <div data-sly-test="${showEsp && showSelector}">selector.esp</div>
+        <div data-sly-test="${showHtml && showSelector}">selector.GET.html</div>
+        <div data-sly-test="${showJsp && showSelector}">selector.GET.jsp</div>
+        <div data-sly-test="${showEsp && showSelector}">selector.GET.esp</div>
+    </div>
+    <div class="scripts-group">
+        <div data-sly-test="${showHtml && showSelector}">selector/GET.html</div>
+        <div data-sly-test="${showJsp && showSelector}">selector/GET.jsp</div>
+        <div data-sly-test="${showEsp && showSelector}">selector/GET.esp</div>
+    </div>
+    <div class="scripts-group indent">
+        <div data-sly-test="${showHtml}">resource-node.html.html</div>
+        <div data-sly-test="${showJsp}">resource-node.html.jsp</div>
+        <div data-sly-test="${showEsp}">resource-node.html.esp</div>
+        <div data-sly-test="${showHtml}">resource-node.html.GET.html</div>
+        <div data-sly-test="${showJsp}">resource-node.html.GET.jsp</div>
+        <div data-sly-test="${showEsp}">resource-node.html.GET.esp</div>
+    </div>
+    <div class="scripts-group indent">
+        <div data-sly-test="${showJsp}">html.jsp</div>
+        <div data-sly-test="${showJsp}">html.GET.jsp</div>
+        <div data-sly-test="${showHtml}">html.html</div>
+        <div data-sly-test="${showEsp}">html.esp</div>
+        <div data-sly-test="${showHtml}">html.GET.html</div>
+        <div data-sly-test="${showEsp}">html.GET.esp</div>
+    </div>
+    <div class="scripts-group indent">
+        <div data-sly-test="${showHtml}">resource-node.html</div>
+        <div data-sly-test="${showHtml}">resource-node.GET.html</div>
+        <div data-sly-test="${showJsp}">resource-node.GET.jsp</div>
+        <div data-sly-test="${showEsp}">resource-node.GET.esp</div>
+        <div data-sly-test="${showJsp}">resource-node.jsp</div>
+        <div data-sly-test="${showEsp}">resource-node.esp</div>
+    </div>
+    <div class="scripts-group indent">
+        <div data-sly-test="${showHtml}">GET.html</div>
+        <div data-sly-test="${showJsp}">GET.jsp</div>
+        <div data-sly-test="${showEsp}">GET.esp</div>
+    </div>
 
-    <h2 data-sly-resource="${'resource-node' @ resourceType='/apps/aem-workbook/components/demo/script-resolution-demo/resource-node'}">Scripts priority looks like below:</h2>
+    <h2>
+        <div data-sly-resource="${'resource-node' @ resourceType='/apps/aem-workbook/components/demo/script-resolution-demo/resource-node'}"/>
+    </h2>
+    <h5>>>To see the next script in the 'Scripts priority list',</h5>
+    <h5>delete the current script from the folder</h5>
+    <h5>'/apps/aem-workbook/components/demo/script-resolution-demo/resource-node'</h5>
 </section>
