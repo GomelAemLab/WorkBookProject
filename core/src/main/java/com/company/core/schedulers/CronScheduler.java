@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.company.core.constants.Constants.EVENT_PATH_ARCHIVE;
 import static com.company.core.constants.Constants.JOB_ARCHIVE;
 
 @Designate(ocd = CronScheduler.Config.class)
@@ -43,6 +44,9 @@ public class CronScheduler {
         @AttributeDefinition(name = "Number of days to start  archiving")
         int minus_days() default 30;
 
+        @AttributeDefinition(name = "The path to the folder where events will be moved")
+        String path_to_archive() default EVENT_PATH_ARCHIVE;
+
     }
 
     @Activate
@@ -51,7 +55,7 @@ public class CronScheduler {
         scheduler.unschedule(JOB_ARCHIVE);
         param.put(ResourceResolverFactory.SUBSERVICE, userPrincipal.getUserMappingPrincipal());
         final String minusDaysInMillisec = LocalDate.now().minusDays(config.minus_days()).toString();
-        scheduler.schedule(new MoveToArchive(minusDaysInMillisec, param, queryBuilder, resolverFactory),
+        scheduler.schedule(new MoveToArchive(config.path_to_archive(), minusDaysInMillisec, param, queryBuilder, resolverFactory),
                 scheduler.EXPR(config.scheduler_expression()).name(JOB_ARCHIVE));
     }
 

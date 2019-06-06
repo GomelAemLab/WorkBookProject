@@ -22,13 +22,15 @@ import static com.company.core.constants.Constants.*;
 
 public class MoveToArchive implements Runnable {
 
-    private Map<String, Object> param;
-    private QueryBuilder queryBuilder;
-    private ResourceResolverFactory resolverFactory;
+    private final Map<String, Object> param;
+    private final QueryBuilder queryBuilder;
+    private final String pathToArchive;
+    private final ResourceResolverFactory resolverFactory;
     private final Map<String, String> queryMap = new HashMap<>();
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    MoveToArchive(String upperBound, Map<String, Object> param, QueryBuilder queryBuilder, ResourceResolverFactory resolverFactory) {
+    MoveToArchive(String pathToArchive, String upperBound, Map<String, Object> param, QueryBuilder queryBuilder, ResourceResolverFactory resolverFactory) {
+        this.pathToArchive = pathToArchive;
         this.param = param;
         this.queryBuilder = queryBuilder;
         this.resolverFactory = resolverFactory;
@@ -50,12 +52,12 @@ public class MoveToArchive implements Runnable {
             session = resolver.adaptTo(Session.class);
             if (session != null) {
 
-                final String folderToMove = JcrUtil.createPath(EVENT_PATH_ARCHIVE, EVENT_FOLDER_TYPE, EVENT_FOLDER_TYPE, session, false).getPath();
+                final String folderToMove = JcrUtil.createPath(pathToArchive, EVENT_FOLDER_TYPE, EVENT_FOLDER_TYPE, session, false).getPath();
                 final Query query = queryBuilder.createQuery(PredicateGroup.create(queryMap), resolver.adaptTo(Session.class));
                 final List<Hit> resultHits = query.getResult().getHits();
                 for (final Hit hit : resultHits) {
                     path = hit.getPath();
-                    if (!path.contains(EVENT_PATH_ARCHIVE)) {
+                    if (!path.contains(pathToArchive)) {
                         session.move(path, folderToMove + "/" + hit.getNode().getName());
                     }
                 }
