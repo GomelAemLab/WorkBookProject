@@ -1,13 +1,10 @@
 package com.company.core.servlets;
 
-import com.company.core.beans.event.EventFromRequest;
-import com.company.core.beans.event.EventHelper;
 import com.company.core.execption.JcrException;
 import com.company.core.execption.ValidationError;
 import com.company.core.models.Event;
 import com.company.core.services.EventServiceCRUD;
 import com.company.core.validation.EventValidation;
-import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -22,11 +19,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.company.core.constants.Constants.JSON_SELECTOR;
-import static com.company.core.constants.Constants.REDIRECT_PATH;
 
 @Component(service = Servlet.class,
         property = {
