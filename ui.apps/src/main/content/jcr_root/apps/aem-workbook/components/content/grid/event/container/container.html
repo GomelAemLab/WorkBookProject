@@ -1,8 +1,33 @@
 <!-- The container of Events -->
 <div>Container</div>
 
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">POST FORM</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to remove the Event?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <form action="/bin/event.form.html" method="post">
+                    <input type="hidden" name="id" value="" >
+                    <input type="hidden" name="operation" value="delete" >
+                    <input type="submit" value="Submit" class="btn btn-info">
+                    <input type="hidden" name="redirectPath" value=${properties.redirectPath}>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <sly data-sly-use.itemContainer="com.company.core.models.EventItemContainer"
-     data-sly-use.items="aem-workbook/components/content/grid/event/templates/items.html"></sly>
+     data-sly-use.items="aem-workbook/components/content/grid/event/templates/item.html"></sly>
 
 <sly data-sly-test.eventList="${itemContainer.eventItems}">
     <div class="row mt-3 mb-3">
