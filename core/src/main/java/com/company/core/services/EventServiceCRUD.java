@@ -5,6 +5,7 @@ import com.company.core.models.Event;
 import com.company.core.execption.JcrException;
 import com.company.core.execption.ValidationError;
 
+import java.util.Calendar;
 import java.util.List;
 
 public interface EventServiceCRUD {
@@ -22,4 +23,6 @@ public interface EventServiceCRUD {
     Event update(String eventPath);
 
     boolean delete(String eventPath);
+
+    List<Event> selectClosest(Calendar fromDate, int limit) throws JcrException;
 }

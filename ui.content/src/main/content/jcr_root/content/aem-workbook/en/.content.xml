@@ -2,7 +2,7 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-05-27T14:26:05.087+03:00"
+        cq:lastModified="{Date}2019-06-10T11:50:08.021+03:00"
         cq:lastModifiedBy="admin"
         cq:template="/apps/aem-workbook/templates/page-home"
         jcr:primaryType="cq:PageContent"
@@ -21,6 +21,13 @@
                 sling:resourceType="weretail/components/content/heroimage"
                 fileReference="/content/dam/we-retail/en/products/apparel/shorts/Shorts_women.jpg"
                 useFullWidth="true"/>
+            <carousel
+                jcr:created="{Date}2019-06-10T11:50:06.246+03:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2019-06-10T11:50:06.246+03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="aem-workbook/components/content/carousel"/>
             <text
                 jcr:created="{Date}2019-05-27T14:24:31.486+03:00"
                 jcr:createdBy="admin"
