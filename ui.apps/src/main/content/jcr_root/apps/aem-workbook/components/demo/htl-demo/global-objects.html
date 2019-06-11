@@ -1,0 +1,116 @@
+<section>
+    <h2>
+    <span>
+        <a href="https://docs.adobe.com/content/help/en/experience-manager-htl/using/htl/global-objects.html">
+            ${properties['objects/title'] ? properties['objects/title'] : "HTL Global Objects"}
+        </a>
+    </span><span>demonstrator</span>
+    </h2>
+    <p>>> Select the items of interest in the Dialog</p>
+
+    <div data-sly-test="${properties['objects/props'] == 'checked'}">
+        <h3>- properties</h3>
+        <p>Getting all properties of the current Resource by
+            <span class="htl-markup-example">data-sly-list="<b>\${properties}</b>"</span>
+            >> produces >>
+        </p>
+        <ul data-sly-list="${properties}">
+            <li class="output-html-markup-example">${item}</li>
+        </ul>
+        <sly data-sly-test="${properties.sling:resourceType}">
+            <p>Getting value of the 'resourceType' property of the current resource by
+                <span class="htl-markup-example"><b>\${properties.sling:resourceType}</b></span>
+                >> produces >>
+            </p>
+            <ul>
+                <li class="output-html-markup-example">${properties.sling:resourceType}</li>
+            </ul>
+        </sly>
+    </div>
+
+    <div data-sly-test="${properties['objects/pageprops'] == 'checked'}">
+        <h3>- pageProperties</h3>
+        <p>Getting all page properties of the current Page by
+            <span class="htl-markup-example">data-sly-repeat="<b>\${pageProperties}</b>"</span>
+            >> produces >>
+        </p>
+        <ul>
+            <li class="output-html-markup-example" data-sly-repeat="${pageProperties}">${item}</li>
+        </ul>
+        <sly data-sly-test="${pageProperties.cq:template}">
+            <p>Getting path of the Template of the current Page by
+                <span class="htl-markup-example"><b>\${pageProperties.cq:template}</b></span>
+                >> produces >>
+                <span class="output-html-markup-example">${pageProperties.cq:template}</span>
+            </p>
+        </sly>
+    </div>
+
+    <div data-sly-test="${properties['objects/component'] == 'checked'}">
+        <h3>- component</h3>
+        <p data-sly-test="${component.componentGroup}">
+            Getting the name of the component group by
+            <span class="htl-markup-example">
+                <b>\${component.componentGroup}</b>
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                ${component.componentGroup}
+            </span>
+        </p>
+        <p data-sly-test="${component.cellName}">
+            Getting the cell name of this component by
+            <span class="htl-markup-example">
+                <b>\${component.cellName}</b>
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                ${component.cellName}
+            </span>
+        </p>
+        <p data-sly-test="${component.resourceType}">
+            Getting the resource type to be used for this component by
+            <span class="htl-markup-example">
+                <b>\${component.resourceType}</b>
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                ${component.resourceType}
+            </span>
+        </p>
+    </div>
+
+    <div data-sly-test="${properties['objects/currentNode'] == 'checked'}">
+        <h3>- currentNode</h3>
+        <p data-sly-test="${currentNode.name}">
+            Getting the name of this Item in qualified form by
+            <span class="htl-markup-example">
+                <b>\${currentNode.name}</b>
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                ${currentNode.name}
+            </span>
+        </p>
+        <p data-sly-test="${currentNode.path}">
+            Getting the normalized absolute path to this item by
+            <span class="htl-markup-example">
+                <b>\${currentNode.path}</b>
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                ${currentNode.path}
+            </span>
+        </p>
+        <p data-sly-test="${currentNode.depth}">
+            Getting the depth of this Item in the workspace item graph by
+            <span class="htl-markup-example">
+                <b>\${currentNode.depth}</b>
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                ${currentNode.depth}
+            </span>
+        </p>
+    </div>
+</section>
