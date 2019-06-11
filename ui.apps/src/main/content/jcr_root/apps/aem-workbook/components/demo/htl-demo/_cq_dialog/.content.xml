@@ -12,46 +12,129 @@
                 sling:resourceType="granite/ui/components/coral/foundation/tabs">
                 <items jcr:primaryType="nt:unstructured">
                     <objects
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="HTL Global Objects"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="HTL Global Objects"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
                             <columns
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                                 <items jcr:primaryType="nt:unstructured">
                                     <column
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
                                             <label
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldDescription="Label of this field"
-                                                fieldLabel="Title"
-                                                name="./objects/title"/>
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Label of this field"
+                                                    fieldLabel="Title"
+                                                    value="HTL Global Objects"
+                                                    name="./objects/title"/>
                                             <props
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                fieldDescription="List of properties of the current Resource. Backed by org.apache.sling.api.resource.ValueMap"
-                                                name="./objects/props"
-                                                text="properties"
-                                                value="checked"
-                                                uncheckedValue="unchecked"/>
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="List of properties of the current Resource. Backed by org.apache.sling.api.resource.ValueMap"
+                                                    name="./objects/props"
+                                                    text="properties"
+                                                    value="checked"
+                                                    uncheckedValue="unchecked"/>
                                             <pageprops
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                fieldDescription="List of page properties of the current Page. Backed by org.apache.sling.api.resource.ValueMap"
-                                                name="./objects/pageprops"
-                                                text="pageProperties"
-                                                value="checked"
-                                                uncheckedValue="unchecked"/>
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="List of page properties of the current Page. Backed by org.apache.sling.api.resource.ValueMap"
+                                                    name="./objects/pageprops"
+                                                    text="pageProperties"
+                                                    value="checked"
+                                                    uncheckedValue="unchecked"/>
+                                            <component
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="Info about Component. Backed by com.day.cq.wcm.api.components.Component"
+                                                    name="./objects/component"
+                                                    text="component"
+                                                    value="checked"
+                                                    uncheckedValue="unchecked"/>
+                                            <currentNode
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="Info about Current Node. Backed by javax.jcr.Node"
+                                                    name="./objects/currentNode"
+                                                    text="currentNode"
+                                                    value="checked"
+                                                    uncheckedValue="unchecked"/>
+                                            <currentPage
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="Info about Current Page. Backed by com.day.cq.wcm.api.Page"
+                                                    name="./objects/currentPage"
+                                                    text="currentNode"
+                                                    value="checked"
+                                                    uncheckedValue="unchecked"/>
                                         </items>
                                     </column>
                                 </items>
                             </columns>
                         </items>
                     </objects>
+                    <statements
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="HTL Block Statements"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <label
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Label of this field"
+                                                    fieldLabel="Title"
+                                                    value="HTL Block Statements"
+                                                    name="./statements/title"/>
+                                            <sly
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="SLY tag does not get displayed in the resulting HTML"
+                                                    name="./statements/sly"
+                                                    text="sly"
+                                                    value="checked"
+                                                    uncheckedValue="unchecked"/>
+                                            <unwrap
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="Removes the host element from the generated markup while retaining its content"
+                                                    name="./statements/unwrap"
+                                                    text="data-sly-unwrap"
+                                                    value="checked"
+                                                    uncheckedValue="unchecked"/>
+                                            <attribute
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="Adds attributes to the host element."
+                                                    name="./statements/attribute"
+                                                    text="data-sly-attribute"
+                                                    value="checked"
+                                                    uncheckedValue="unchecked"/>
+                                            <text
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="Replaces the content of its host element with the specified text."
+                                                    name="./statements/text"
+                                                    text="data-sly-text"
+                                                    value="checked"
+                                                    uncheckedValue="unchecked"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </statements>
                 </items>
             </tabs>
         </items>

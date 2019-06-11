@@ -1,0 +1,76 @@
+<section>
+    <h2>
+        <span>
+            <a href="https://docs.adobe.com/content/help/en/experience-manager-htl/using/htl/block-statements.html">
+                ${properties['statements/title'] ? properties['statements/title'] : "HTL Block Statements"}
+            </a>
+        </span>
+        <span>demonstrator</span>
+    </h2>
+    <p>>> Select the items of interest in the Dialog</p>
+
+    <div data-sly-test="${properties['statements/sly'] == 'checked'}">
+        <h3>- sly</h3>
+        <p>The SLY element does not get displayed in the resulting HTML:</p>
+        <p>
+            <span class="htl-markup-example">
+                &lt;<b>sly</b>&gt;This text has SLY tag in HTL&lt;/sly&gt;
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                <sly>This text has SLY tag in HTL</sly>
+            </span>
+        </p>
+    </div>
+
+    <div data-sly-test="${properties['statements/unwrap'] == 'checked'}">
+        <h3>- unwrap</h3>
+        <p>Removes the host element from the generated markup while retaining its content:</p>
+        <p>
+            <span class="htl-markup-example">
+                &lt;span <b>data-sly-unwrap="\${true}"</b>&gt;This text has 'data-sly-unwrap' in HTL&lt;/span&gt;
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                <span data-sly-unwrap="${true}">This text has 'data-sly-unwrap' in HTL</span>
+            </span>
+        </p>
+        <p>
+            <span class="htl-markup-example">
+                &lt;span <b>data-sly-unwrap</b>&gt;This text has 'data-sly-unwrap' in HTL&lt;/span&gt;
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                <span data-sly-unwrap>This text has 'data-sly-unwrap' in HTL</span>
+            </span>
+        </p>
+    </div>
+
+    <div data-sly-test="${properties['statements/attribute'] == 'checked'}">
+        <h3>- attribute</h3>
+        <p>Adds attributes to the host element:</p>
+        <p>
+            <span class="htl-markup-example">
+                &lt;span title="Lorem Ipsum" <b>data-sly-attribute.title</b>="This text will be instead 'Lorem ipsum' in the 'title' attribute">Inspect 'title' attribute&lt;/span&gt;
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                <span title="Lorem Ipsum" data-sly-attribute.title="This text will be instead 'Lorem ipsum' in the 'title' attribute">Inspect 'title' attribute</span>
+            </span>
+        </p>
+    </div>
+
+    <div data-sly-test="${properties['statements/text'] == 'checked'}">
+        <h3>- text</h3>
+        <p>Replaces the content of its host element with the specified text:</p>
+        <p>
+            <span class="htl-markup-example">
+                &lt;span <b>data-sly-text</b>="This text will be instead 'Lorem ipsum'">Lorem ipsum&lt;/span&gt;
+            </span>
+            >> produces >>
+            <span class="output-html-markup-example">
+                <span data-sly-text="This text will be instead 'Lorem ipsum'">Lorem ipsum</span>
+            </span>
+        </p>
+    </div>
+</section>
