@@ -1,14 +1,21 @@
 package com.company.core.services.impl;
 
-import com.company.core.beans.Event.EventAdaptToNode;
+import com.company.core.beans.event.EventHelper;
 import com.company.core.configuration.UserPrincipal;
 import com.company.core.execption.HttpException;
 import com.company.core.execption.JcrException;
 import com.company.core.execption.NotFoundException;
+import com.company.core.execption.ValidationError;
 import com.company.core.models.Event;
 import com.company.core.services.EventServiceCRUD;
 import com.company.core.validation.DateHelper;
+import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.commons.jcr.JcrUtil;
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.google.common.base.Strings;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -19,12 +26,14 @@ import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.query.Query;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static com.company.core.constants.Constants.EMPTY_FIELD_ERROR_MSG;
 import static com.company.core.constants.Constants.EVENT_FOLDER_TYPE;
 import static com.company.core.constants.Constants.EVENT_PATH;
 import static com.day.cq.commons.jcr.JcrConstants.NT_UNSTRUCTURED;
@@ -39,6 +48,8 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     private ResourceResolverFactory resolverFactory;
     @Reference
     private UserPrincipal userPrincipal;
+    @Reference
+    private QueryBuilder queryBuilder;
 
     @Activate
     @Modified
@@ -55,13 +66,13 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
         try {
             resolver = resolverFactory.getServiceResourceResolver(param);
             session = resolver.adaptTo(Session.class);
-            if (session == null) {
+            if(session == null){
                 throw new JcrException();
             }
             final Node node = JcrUtil.createPath(event.getEventFolderPath(), EVENT_FOLDER_TYPE, EVENT_FOLDER_TYPE, session, false);
             nodeName = UUID.randomUUID().toString();
             Node eventNode = node.addNode(nodeName, NT_UNSTRUCTURED);
-            new EventAdaptToNode(event).adaptTo(eventNode);
+            new EventHelper().setPropertiesToNode(event, eventNode);
             session.save();
         } catch (LoginException | RepositoryException e) {
             throw new JcrException();
@@ -89,7 +100,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
         final String path = helper.validateAndGetPath();
 
         List<Event> eventList = new ArrayList<>();
-        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
+        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)){
 
             final Resource resourceDateFolder = resolver.getResource(path);
             if (resourceDateFolder == null) {
@@ -106,6 +117,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
         resourceDateFolder.getChildren().forEach(resource -> {
                     final Event ev = resource.adaptTo(Event.class);
                     if (ev != null) {
+                        ev.setId(resource.getName());
                         eventList.add(ev);
                     }
                 }
@@ -116,7 +128,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     public List<Event> getEvents() throws JcrException {
 
         List<Event> eventList = new ArrayList<>();
-        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
+        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)){
 
             final Resource eventsFolder = resolver.getResource(EVENT_PATH);
             if (eventsFolder == null) {
@@ -138,8 +150,19 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     }
 
     @Override
-    public Event update(String eventPath) {
-        return null;
+    public void update(Event event) throws JcrException, NotFoundException, ValidationError {
+        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
+
+            final String path = getAbsPath(event);
+            final Resource resource = resolver.getResource(path);
+            if (resource == null) {
+                throw new NotFoundException();
+            }
+            final Node eventNode = resource.adaptTo(Node.class);
+            new EventHelper().setPropertiesToNode(event, eventNode);
+        } catch (LoginException | RepositoryException e) {
+            throw new JcrException();
+        }
     }
 
     @Override
@@ -167,5 +190,40 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
         return eventList;
     }
 }
+    public void delete(String id) throws NotFoundException, JcrException {
+        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
+            final Session session = resolver.adaptTo(Session.class);
+            if (session == null) {
+                throw new RepositoryException();
+            }
+            final Map<String, String> queryMap = new HashMap<>();
+            queryMap.put("path", EVENT_PATH);
+            queryMap.put("type", JcrConstants.NT_UNSTRUCTURED);
+            queryMap.put("nodename", id);
+            final Query query = queryBuilder.createQuery(PredicateGroup.create(queryMap), session);
+            final List<Hit> hits = query.getResult().getHits();
+            if (!hits.isEmpty()) {
+                int alwaysSingle = 0;
+                session.removeItem(hits.get(alwaysSingle).getPath());
+                session.save();
+            } else {
+                throw new PathNotFoundException();
+            }
+        } catch (PathNotFoundException e) {
+            throw new NotFoundException();
 
+        } catch (LoginException | RepositoryException e) {
+            throw new JcrException();
+        }
+    }
 
+    private String getAbsPath(Event event) throws ValidationError {
+        final String id = event.getId();
+        final String date = event.getEventDateHtmlFormat();
+        if (Strings.isNullOrEmpty(id) || Strings.isNullOrEmpty(date)) {
+            throw new ValidationError(EMPTY_FIELD_ERROR_MSG);
+
+        }
+        return EVENT_PATH + event.getEventDate() + event.getId();
+    }
+}

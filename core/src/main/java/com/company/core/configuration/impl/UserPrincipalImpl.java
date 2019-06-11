@@ -26,3 +26,5 @@ public class UserPrincipalImpl implements UserPrincipal {
         return this.userPrincipalConfiguration.user_mapping_principal();
     }
 }
+
+//TODO  OSGi Component, Configuration

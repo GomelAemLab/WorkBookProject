@@ -1,10 +1,10 @@
 package com.company.core.servlets;
 
-import com.company.core.models.Event;
 import com.company.core.execption.JcrException;
-import com.company.core.services.EventServiceCRUD;
-import com.company.core.validation.EventJsonValidation;
 import com.company.core.execption.ValidationError;
+import com.company.core.models.Event;
+import com.company.core.services.EventServiceCRUD;
+import com.company.core.validation.EventValidation;
 import com.google.gson.Gson;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -21,28 +21,31 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+import static com.company.core.constants.Constants.JSON_SELECTOR;
+
 @Component(service = Servlet.class,
         property = {
-                Constants.SERVICE_DESCRIPTION + "=Event post servlet",
+                Constants.SERVICE_DESCRIPTION + "=event json servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-                "sling.servlet.paths=" + "/bin/event"
+                "sling.servlet.paths=" + "/bin/event",
+                "sling.servlet.selectors=" + JSON_SELECTOR
         })
-public class EventPostServlet extends SlingAllMethodsServlet {
+public class EventJsonServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUid = 1L;
 
     @Reference
-    EventServiceCRUD serviceCRUD;
+    private EventServiceCRUD serviceCRUD;
 
     @Override
     protected void doPost(final SlingHttpServletRequest req,
                           final SlingHttpServletResponse resp) throws ServletException, IOException {
-        try (final BufferedReader reader = req.getReader()) {
 
+        try (BufferedReader reader = req.getReader()) {
             final String json = reader.lines().collect(Collectors.joining(System.lineSeparator()));
             final Gson gson = new Gson();
             final Event event = gson.fromJson(json, Event.class);
-            new EventJsonValidation(event).validate();
+            new EventValidation(event).validate();
 
             serviceCRUD.create(event);
         } catch (IOException e) {
@@ -52,4 +55,5 @@ public class EventPostServlet extends SlingAllMethodsServlet {
         }
     }
 }
+
 
