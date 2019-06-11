@@ -12,10 +12,10 @@ import javax.inject.Inject;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.company.core.constants.Constants.HOME_ROOT_PAGE_PATH;
+
 @Model(adaptables = {SlingHttpServletRequest.class})
 public class TopNavigationModel {
-
-    private static final String HOME_ROOT_PAGE_PATH = "/content/aem-workbook/en";
 
     @Inject
     private SlingHttpServletRequest request;

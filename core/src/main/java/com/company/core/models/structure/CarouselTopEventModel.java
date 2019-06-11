@@ -20,7 +20,7 @@ public class CarouselTopEventModel {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private static final int DEFAULT_NUMBER_OF_EVENTS = 874;
+    private static final int DEFAULT_NUMBER_OF_EVENTS = 5;
 
     @OSGiService
     private EventServiceCRUD eventServiceCRUD;

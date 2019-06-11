@@ -1,6 +1,9 @@
 package com.company.core.constants;
 
 public class Constants {
+
+    public static final String HOME_ROOT_PAGE_PATH = "/content/aem-workbook/en";
+
     public static final String EVENT_FOLDER_TYPE = "sling:OrderedFolder";
     public static final String EVENT_PATH = "/content/events/active/";
     public static final String EVENT_PATH_ARCHIVE = "/content/events/archive";

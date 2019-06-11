@@ -166,13 +166,13 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
 
     @Override
     public List<Event> selectClosest(Calendar fromDate, int limit) throws JcrException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = format.format(fromDate.getTime());
-        final String SQL2_SELECT_CLOSEST = "SELECT * FROM [nt:base] AS s WHERE ISDESCENDANTNODE([/content/events]) " +
-                "AND s.[eventDate] IS NOT NULL and s.[eventDate] > cast('%s' as date) order by s.[eventDate] ASC";
+        String formattedDate = fromDate.toInstant().toString();
+        final String SQL2_SELECT_CLOSEST = "SELECT * FROM [nt:base] AS s WHERE ISDESCENDANTNODE([%s]) " +
+                "AND s.[eventDate] IS NOT NULL AND s.[eventDate] > CAST('%s' AS DATE) ORDER BY s.[eventDate] ASC";
         List<Event> eventList = new ArrayList<>();
         try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
-            Iterator<Resource> resources = resolver.findResources(String.format(SQL2_SELECT_CLOSEST, formattedDate), javax.jcr.query.Query.JCR_SQL2);
+            Iterator<Resource> resources = resolver
+                    .findResources(String.format(SQL2_SELECT_CLOSEST, EVENT_PATH, formattedDate), javax.jcr.query.Query.JCR_SQL2);
             while (resources.hasNext() && (limit-- > 0)) {
                 Event event = resources.next().adaptTo(Event.class);
                 if (event != null) {
