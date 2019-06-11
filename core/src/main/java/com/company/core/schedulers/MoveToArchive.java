@@ -1,5 +1,6 @@
 package com.company.core.schedulers;
 
+import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.commons.jcr.JcrUtil;
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
@@ -35,7 +36,7 @@ public class MoveToArchive implements Runnable {
         this.queryBuilder = queryBuilder;
         this.resolverFactory = resolverFactory;
         queryMap.put("path", EVENT_PATH);
-        queryMap.put("type", "nt:unstructered");
+        queryMap.put("type", JcrConstants.NT_UNSTRUCTURED);
         queryMap.put("daterange.property", "eventCreated");
         queryMap.put("daterange.upperBound", upperBound);
     }
@@ -53,7 +54,7 @@ public class MoveToArchive implements Runnable {
             if (session != null) {
 
                 final String folderToMove = JcrUtil.createPath(pathToArchive, EVENT_FOLDER_TYPE, EVENT_FOLDER_TYPE, session, false).getPath();
-                final Query query = queryBuilder.createQuery(PredicateGroup.create(queryMap), resolver.adaptTo(Session.class));
+                final Query query = queryBuilder.createQuery(PredicateGroup.create(queryMap), session);
                 final List<Hit> resultHits = query.getResult().getHits();
                 for (final Hit hit : resultHits) {
                     path = hit.getPath();

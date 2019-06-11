@@ -7,20 +7,24 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 
 import javax.inject.Inject;
+import java.util.Calendar;
 
 @Model(adaptables=Resource.class)
 public class Event {
 
+    private String id;
+
     @NodeProperty
-    @SerializedName(value = "eventText")
+    @Inject
+    private Calendar eventDate;
+
+    @NodeProperty
     @Inject
     private String eventName;
 
     private String eventFolderPath;
 
-    @NodeProperty
-    @Inject
-    private String eventDate;
+    private String eventDateHtmlFormat;
     @NodeProperty
     @Inject
     @Optional
@@ -38,12 +42,12 @@ public class Event {
         this.eventName = eventName;
     }
 
-    public String getEventDate() {
-        return eventDate;
+    public String getEventDateHtmlFormat() {
+        return eventDateHtmlFormat;
     }
 
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
+    public void setEventDateHtmlFormat(String eventDate) {
+        this.eventDateHtmlFormat = eventDate;
     }
 
     public String getEventTime() {
@@ -67,6 +71,22 @@ public class Event {
     }
     public void setEventFolderPath(String eventFolderPath) {
         this.eventFolderPath = eventFolderPath;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Calendar getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(Calendar eventDate) {
+        this.eventDate = eventDate;
     }
 }
 
