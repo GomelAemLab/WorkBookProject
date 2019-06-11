@@ -15,7 +15,7 @@ public class EventValidation {
     }
 
     public void validate() throws ValidationError {
-        DateHelper dateValidation = new DateHelper(event.getEventDateHtmlFormat());
+        DateHelper dateValidation = new DateHelper(event.getEventDateHtmlFormat(), event.getEventTime());
         event.setEventFolderPath(dateValidation.validateAndGetPath());
         event.setEventDate(dateValidation.getDate());
         validateNullOrEmpty(event.getEventName());

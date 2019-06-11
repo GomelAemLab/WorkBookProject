@@ -25,9 +25,7 @@ public class Event {
     private String eventFolderPath;
 
     private String eventDateHtmlFormat;
-    @NodeProperty
-    @Inject
-    @Optional
+
     private String eventTime;
 
     @NodeProperty
