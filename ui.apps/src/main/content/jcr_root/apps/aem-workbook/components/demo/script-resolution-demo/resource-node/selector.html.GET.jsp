@@ -1,0 +1,1 @@
+'selector.html.GET.jsp' script will be called
