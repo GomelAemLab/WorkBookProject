@@ -5,7 +5,7 @@
                 ${item.eventName}
             </div>
             <div class="card-body">
-                <h5 class="card-title">When: ${item.eventDate} - ${item.eventTime}</h5>
+                <h5 class="card-title">When: ${'dd MMMM yyyy' @ format=item.eventDate} - ${item.eventTime}</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
