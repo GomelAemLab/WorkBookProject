@@ -20,23 +20,25 @@ public class EventItemContainer {
     @OSGiService
     private EventServiceCRUD eventServiceCRUD;
 
+    private List<Event> events;
+
     @PostConstruct
     public void init() {
-        logger.info("EventItemContainer model has been initialised.");
+        try {
+            if (eventServiceCRUD != null) {
+                this.events = eventServiceCRUD.getEvents();
+                logger.info("EventItemContainer model has been initialised.");
+            } else {
+                this.events = Collections.emptyList();
+                logger.debug("EventServiceCRUD is null.");
+            }
+        } catch (JcrException e) {
+            this.events = Collections.emptyList();
+            logger.error("EventServiceCRUD service can't access to JCR by reason: {}", e.getMessage());
+        }
     }
 
     public List<Event> getEventItems() {
-
-        if (eventServiceCRUD == null) {
-            logger.debug("EventServiceCRUD is null.");
-            return Collections.emptyList();
-        }
-
-        try {
-            return eventServiceCRUD.getEvents();
-        } catch (JcrException e) {
-            logger.error("EventServiceCRUD service can't access to JCR by reason: {}", e.getMessage());
-            return Collections.emptyList();
-        }
+        return events;
     }
 }
