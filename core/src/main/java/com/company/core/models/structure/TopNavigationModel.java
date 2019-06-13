@@ -90,5 +90,4 @@ public class TopNavigationModel {
     public List<Page> getLanguagePages() {
         return languagePages;
     }
-
 }

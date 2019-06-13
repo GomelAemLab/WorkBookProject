@@ -2,8 +2,6 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-05-27T14:26:05.087+03:00"
-        cq:lastModifiedBy="admin"
         cq:template="/apps/aem-workbook/templates/page-home"
         jcr:primaryType="cq:PageContent"
         jcr:title="Home"
@@ -13,19 +11,14 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/parsys">
             <heroimage
-                jcr:created="{Date}2019-05-27T14:20:29.725+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-05-27T14:23:27.320+03:00"
-                jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="weretail/components/content/heroimage"
                 fileReference="/content/dam/we-retail/en/products/apparel/shorts/Shorts_women.jpg"
                 useFullWidth="true"/>
+            <carousel
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="aem-workbook/components/content/carousel"/>
             <text
-                jcr:created="{Date}2019-05-27T14:24:31.486+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-05-27T14:25:44.379+03:00"
-                jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/text"
                 text="&lt;p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tristique et egestas quis ipsum. Sit amet cursus sit amet dictum. Sollicitudin tempor id eu nisl. Sed odio morbi quis commodo. Tempor orci dapibus ultrices in iaculis nunc sed augue lacus. Tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Feugiat in ante metus dictum at tempor commodo ullamcorper. Nibh mauris cursus mattis molestie a iaculis at erat pellentesque. Vitae tortor condimentum lacinia quis vel eros donec ac. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras. Amet facilisis magna etiam tempor orci eu lobortis elementum nibh. Neque laoreet suspendisse interdum consectetur libero id faucibus. Quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor. Semper auctor neque vitae tempus quam pellentesque. Risus pretium quam vulputate dignissim suspendisse in est ante in. Semper risus in hendrerit gravida rutrum quisque non.&lt;/p>&#xa;&lt;p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Eget est lorem ipsum dolor sit amet consectetur. Aliquam purus sit amet luctus venenatis. Ut pharetra sit amet aliquam id diam. Ornare arcu odio ut sem. Bibendum arcu vitae elementum curabitur vitae nunc. Leo duis ut diam quam. Nam at lectus urna duis convallis convallis tellus id interdum. Eget mi proin sed libero. Dictum varius duis at consectetur lorem. Egestas dui id ornare arcu odio ut. Congue mauris rhoncus aenean vel.&lt;/p>&#xa;&lt;p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Diam donec adipiscing tristique risus nec feugiat in fermentum posuere. Vitae et leo duis ut diam quam. Morbi tempus iaculis urna id volutpat. Malesuada pellentesque elit eget gravida. Malesuada fames ac turpis egestas. Erat nam at lectus urna duis. Neque sodales ut etiam sit amet nisl purus. Non odio euismod lacinia at. Id semper risus in hendrerit gravida. Odio ut sem nulla pharetra diam sit. Viverra justo nec ultrices dui sapien. Laoreet suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Purus in massa tempor nec feugiat.&lt;/p>&#xa;&lt;p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Integer vitae justo eget magna fermentum iaculis eu. Arcu bibendum at varius vel. Viverra adipiscing at in tellus integer feugiat. Vulputate enim nulla aliquet porttitor. Risus ultricies tristique nulla aliquet enim tortor at auctor urna. Consectetur libero id faucibus nisl tincidunt eget nullam. Sit amet est placerat in egestas erat. Amet porttitor eget dolor morbi non arcu risus quis varius. Augue neque gravida in fermentum et. Curabitur vitae nunc sed velit dignissim sodales ut eu. Nunc lobortis mattis aliquam faucibus purus in. Vitae purus faucibus ornare suspendisse sed nisi lacus sed. Justo nec ultrices dui sapien eget mi proin sed. Elementum integer enim neque volutpat ac. Facilisis sed odio morbi quis. Turpis massa sed elementum tempus egestas. Senectus et netus et malesuada fames ac turpis egestas maecenas. Cursus eget nunc scelerisque viverra mauris in aliquam sem fringilla. Non odio euismod lacinia at quis risus sed vulputate odio.&lt;/p>&#xa;&lt;p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Maecenas sed enim ut sem viverra aliquet eget sit. Ut morbi tincidunt augue interdum velit euismod in pellentesque. Nisi quis eleifend quam adipiscing. Dignissim convallis aenean et tortor. Magna ac placerat vestibulum lectus mauris ultrices eros in. Vitae nunc sed velit dignissim sodales ut. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus. Mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. Pellentesque massa placerat duis ultricies lacus sed turpis. Nunc sed velit dignissim sodales ut eu. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. Egestas congue quisque egestas diam in arcu cursus euismod quis. Fames ac turpis egestas maecenas.&lt;/p>&#xa;"

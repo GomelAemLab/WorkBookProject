@@ -1,0 +1,31 @@
+<div id="carouselExampleIndicators" class="carousel slide mt-3" data-ride="carousel">
+    <sly data-sly-use.events="com.company.core.models.structure.CarouselTopEventModel"
+         data-sly-use.carouselItems="aem-workbook/components/content/carousel/templates/items.html"></sly>
+
+    <sly data-sly-test.isEventsReceived="${events.closestEvents.size}">
+        <ol class="carousel-indicators">
+            <sly data-sly-list="${events.closestEvents}">
+                <li data-target="#carouselExampleIndicators" data-slide-to="${itemList.index}"
+                    class="${itemList.index==0?'active':''}"></li>
+            </sly>
+        </ol>
+        <div class="carousel-inner">
+            <sly data-sly-list="${events.closestEvents}">
+                <sly data-sly-call="${carouselItems.page @ index=itemList.index, item=item }"></sly>
+            </sly>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </sly>
+    <sly data-sly-test.eventsIsEpmty="${!isEventsReceived}">
+        <div class="alert alert-warning">
+            No closest events were registered.
+        </div>
+    </sly>
+</div>

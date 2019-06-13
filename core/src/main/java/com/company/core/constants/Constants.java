@@ -20,8 +20,6 @@ public class Constants {
 
     public static final String JOB_TOPIC_EVENT_CREATED = "com/sling/events/job";
     public static final String JOB_PROPERTY_EVENT_PATH = "event_path";
-
-
     public static final String FORM_SELECTOR = "form";
     public static final String JSON_SELECTOR = "json";
     public static final String REDIRECT_PATH = "redirectPath";
