@@ -2,30 +2,32 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-06-10T16:08:16.476+03:00"
+        cq:lastModified="{Date}2019-05-31T14:31:28.158+03:00"
         cq:lastModifiedBy="admin"
+        cq:lastTranslationUpdate="{Date}2019-05-30T16:52:24.192+03:00"
         cq:template="/apps/aem-workbook/templates/page-content"
+        cq:translationSourcePath="/content/aem-workbook/en/events"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Create"
+        jcr:title="Events"
         sling:resourceType="aem-workbook/components/structure/content-page">
         <par
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/parsys">
             <title
-                jcr:created="{Date}2019-05-27T14:14:06.906+03:00"
+                jcr:created="{Date}2019-05-27T14:14:47.728+03:00"
                 jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-05-27T14:14:06.906+03:00"
+                jcr:lastModified="{Date}2019-05-31T14:31:28.153+03:00"
                 jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
+                jcr:title="События"
                 sling:resourceType="wcm/foundation/components/title"/>
-            <event_form
-                jcr:created="{Date}2019-06-10T13:34:52.645+03:00"
+            <container
+                jcr:created="{Date}2019-05-27T14:12:19.478+03:00"
                 jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-06-10T16:08:16.473+03:00"
+                jcr:lastModified="{Date}2019-05-27T14:12:19.478+03:00"
                 jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="aem-workbook/components/content/event/event-form"
-                redirectPath="/content/aem-workbook/en/events"/>
+                sling:resourceType="aem-workbook/components/content/grid/event/container"/>
         </par>
     </jcr:content>
 </jcr:root>

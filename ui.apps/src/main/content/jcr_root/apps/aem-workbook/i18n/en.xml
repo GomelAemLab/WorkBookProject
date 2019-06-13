@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:language="en"
+    jcr:mixinTypes="[mix:language]"
+    jcr:primaryType="nt:folder">
+
+    <!-- Base page -->
+    <!-- Header -->
+    <!-- Navigation -->
+    <page.base.navigation.menu.title.events
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="page.base.navigation.menu.title.events"
+            sling:message="Events"/>
+    <page.base.navigation.menu.title.create
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="page.base.navigation.menu.title.create"
+            sling:message="Create Event"/>
+    <page.base.navigation.menu.title.demo
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="page.base.navigation.menu.title.demo"
+            sling:message="Demo"/>
+    <page.base.navigation.menu.title.contacts
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="page.base.navigation.menu.title.contacts"
+            sling:message="Contacts"/>
+    <page.base.navigation.menu.title.language
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="page.base.navigation.menu.title.language"
+            sling:message="Language"/>
+    <!-- /Navigation -->
+    <!-- /Header -->
+    <!-- Footer -->
+    <page.base.footer.copyright
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="page.base.footer.copyright"
+        sling:message="© AEM-workbook Site. All rights reserved."/>
+    <!-- /Footer -->
+</jcr:root>

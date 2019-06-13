@@ -37,12 +37,12 @@
     </div>
 </sly>
 <sly data-sly-test="${!eventList}">
-    <sly data-sly-test.isProd="${wcmmode.disabled}">
+    <sly data-sly-test.isPublish="${wcmmode.disabled}">
         <div class="alert alert-warning" role="alert">
             No event data found!
         </div>
     </sly>
-    <sly data-sly-test="${!isProd}">
+    <sly data-sly-test="${!isPublish}">
         <div class="alert alert-warning" role="alert">
             The event data is not received from the service inside EventItemContainer!
         </div>
