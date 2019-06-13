@@ -18,11 +18,11 @@ new hobs.TestSuite("aem-workbook Tests", {path:"/apps/aem-workbook/tests/SampleT
     .addTestCase(new hobs.TestCase("Hello World component on english page")
         .navigateTo("/content/aem-workbook/en.html")
         .asserts.location("/content/aem-workbook/en.html", true)
-        .asserts.visible(".helloworld", true)
+        .asserts.visible(".container", true)
     )
 
-    .addTestCase(new hobs.TestCase("Hello World component on french page")
-        .navigateTo("/content/aem-workbook/fr.html")
-        .asserts.location("/content/aem-workbook/fr.html", true)
-        .asserts.visible(".helloworld", true)
+    .addTestCase(new hobs.TestCase("Hello World component on russian page")
+        .navigateTo("/content/aem-workbook/ru.html")
+        .asserts.location("/content/aem-workbook/ru.html", true)
+        .asserts.visible(".container", true)
     );
