@@ -19,11 +19,11 @@ public class BreadcrumbHelper {
 
         while (resource != null) {
             Page page = resource.adaptTo(Page.class);
-            if (page != null) {
-                chainPages.add(page);
-            }
             if (HOME_ROOT_PAGE_PATH.equals(resource.getPath())) {
                 break;
+            }
+            if (page != null) {
+                chainPages.add(page);
             }
             resource = resource.getParent();
 
