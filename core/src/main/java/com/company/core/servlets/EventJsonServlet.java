@@ -4,11 +4,11 @@ import com.company.core.execption.JcrException;
 import com.company.core.execption.ValidationError;
 import com.company.core.models.Event;
 import com.company.core.services.EventServiceCRUD;
+import com.company.core.validation.DateHelper;
 import com.company.core.validation.EventValidation;
 import com.google.gson.Gson;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
@@ -19,16 +19,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.stream.Collectors;
 
-import static com.company.core.constants.Constants.JSON_SELECTOR;
+import static com.company.core.constants.Constants.EVENT_PATH;
 
 @Component(service = Servlet.class,
         property = {
                 Constants.SERVICE_DESCRIPTION + "=event json servlet",
-                "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-                "sling.servlet.paths=" + "/bin/event",
-                "sling.servlet.selectors=" + JSON_SELECTOR
+                "sling.servlet.paths=" + "/bin/event/json"
         })
 public class EventJsonServlet extends SlingAllMethodsServlet {
 
@@ -45,9 +44,12 @@ public class EventJsonServlet extends SlingAllMethodsServlet {
             final String json = reader.lines().collect(Collectors.joining(System.lineSeparator()));
             final Gson gson = new Gson();
             final Event event = gson.fromJson(json, Event.class);
-            new EventValidation(event).validate();
+            final DateHelper dateHelper = new DateHelper(event.getEventDateHtmlFormat(), event.getEventTime());
+            final Calendar date = dateHelper.getDate();
+            event.setEventDate(date);
+            new EventValidation(event).validate(true);
 
-            serviceCRUD.create(event);
+            serviceCRUD.create(EVENT_PATH + dateHelper.getDatePath(), event);
         } catch (IOException e) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         } catch (JcrException | ValidationError e) {
