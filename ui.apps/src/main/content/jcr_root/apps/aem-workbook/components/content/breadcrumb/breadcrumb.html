@@ -1,0 +1,15 @@
+<nav aria-label="breadcrumb">
+    <sly data-sly-use.breadcrumb="com.company.core.models.structure.BreadcrumbModel"></sly>
+    <ol class="breadcrumb">
+        <sly data-sly-list="${breadcrumb.pageChain}">
+            <li class="breadcrumb-item ${itemList.last?'active':''}">
+                <sly data-sly-test="${!itemList.last}">
+                    <a href="${item.path @ extension='html'}">${item.title}</a>
+                </sly>
+                <sly data-sly-test="${itemList.last}">
+                    <a>${item.title}</a>
+                </sly>
+            </li>
+        </sly>
+    </ol>
+</nav>

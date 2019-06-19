@@ -7,6 +7,7 @@ import com.company.core.execption.JcrException;
 import com.company.core.execption.ValidationError;
 import org.apache.sling.api.resource.LoginException;
 
+import java.util.Calendar;
 import java.util.List;
 
 public interface EventServiceCRUD {
@@ -24,4 +25,6 @@ public interface EventServiceCRUD {
     void update(Event event) throws JcrException, NotFoundException, ValidationError;
 
     void delete(String eventPath) throws NotFoundException, JcrException;
+
+    List<Event> selectClosest(Calendar fromDate, int limit) throws JcrException;
 }

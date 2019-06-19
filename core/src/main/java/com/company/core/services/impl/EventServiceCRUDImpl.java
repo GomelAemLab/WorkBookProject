@@ -19,6 +19,7 @@ import org.osgi.service.component.annotations.Reference;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.company.core.constants.Constants.*;
@@ -52,7 +53,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
         try {
             resolver = resolverFactory.getServiceResourceResolver(param);
             session = resolver.adaptTo(Session.class);
-            if(session == null){
+            if (session == null) {
                 throw new JcrException();
             }
             final Node node = JcrUtil.createPath(path, EVENT_FOLDER_TYPE, EVENT_FOLDER_TYPE, session, false);
@@ -97,7 +98,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
         final String path = "";
 
         List<Event> eventList = new ArrayList<>();
-        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)){
+        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
 
             final Resource resourceDateFolder = resolver.getResource(path);
             if (resourceDateFolder == null) {
@@ -126,7 +127,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     public List<Event> getEvents() throws JcrException {
 
         List<Event> eventList = new ArrayList<>();
-        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)){
+        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
 
             final Resource eventsFolder = resolver.getResource(EVENT_PATH);
             if (eventsFolder == null) {
@@ -166,6 +167,26 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     }
 
     @Override
+    public List<Event> selectClosest(Calendar fromDate, int limit) throws JcrException {
+        String formattedDate = fromDate.toInstant().toString();
+        final String SQL2_SELECT_CLOSEST = "SELECT * FROM [nt:base] AS s WHERE ISDESCENDANTNODE([%s]) " +
+                "AND s.[eventDate] IS NOT NULL AND s.[eventDate] > CAST('%s' AS DATE) ORDER BY s.[eventDate] ASC";
+        List<Event> eventList = new ArrayList<>();
+        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
+            Iterator<Resource> resources = resolver
+                    .findResources(String.format(SQL2_SELECT_CLOSEST, EVENT_PATH, formattedDate), javax.jcr.query.Query.JCR_SQL2);
+            while (resources.hasNext() && (limit-- > 0)) {
+                Event event = resources.next().adaptTo(Event.class);
+                if (event != null) {
+                    eventList.add(event);
+                }
+            }
+        } catch (LoginException e) {
+            throw new JcrException();
+        }
+        return eventList;
+    }
+
     public void delete(String id) throws NotFoundException, JcrException {
         try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
             Resource resource = resolver.getResource(EVENT_PATH + id);
