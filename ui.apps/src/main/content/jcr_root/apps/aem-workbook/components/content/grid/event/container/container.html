@@ -1,7 +1,8 @@
 <div class="events-container" data-sly-attribute.update-path="${properties.pathToUpdate}">
 <!-- The container of Events -->
-<div>Container</div>
-
+<sly data-sly-test="${!wcmmode.disabled}">
+    <div>Events Container</div>
+</sly>
 
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -36,17 +37,24 @@
                 <sly data-sly-call="${items.base @ item=item }"></sly>
             </sly>
         </div>
-</sly>
-<sly data-sly-test="${!eventList}">
-    <sly data-sly-test.isPublish="${wcmmode.disabled}">
-        <div class="alert alert-warning" role="alert">
-            No event data found!
-        </div>
     </sly>
-    <sly data-sly-test="${!isPublish}">
-        <div class="alert alert-warning" role="alert">
-            The event data is not received from the service inside EventItemContainer!
-        </div>
+    <sly data-sly-test="${!eventList}">
+        <sly data-sly-test.isPublish="${wcmmode.disabled}">
+            <div class="alert alert-warning" role="alert">
+                No event data found!
+            </div>
+        </sly>
+        <sly data-sly-test="${!isPublish}">
+            <div class="alert alert-warning" role="alert">
+                The event data is not received from the service inside EventItemContainer!
+            </div>
+        </sly>
     </sly>
-</sly>
 </div>
+<!--/* TODO:
+    1. Add pagination functionality to this component;
+    2. Add dialog to be able configure:
+        a) count of items per page;
+        b) order of items(start from the closest/furthest events).
+*/-->
+
