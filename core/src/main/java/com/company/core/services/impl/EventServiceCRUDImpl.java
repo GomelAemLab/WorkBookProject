@@ -19,7 +19,6 @@ import org.osgi.service.component.annotations.Reference;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.company.core.constants.Constants.*;
@@ -94,21 +93,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
 
     @Override
     public List<Event> getEventsFromDate(String date) throws HttpException {
-        DateHelper helper = new DateHelper(date);
-        final String path = "";
-
-        List<Event> eventList = new ArrayList<>();
-        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
-
-            final Resource resourceDateFolder = resolver.getResource(path);
-            if (resourceDateFolder == null) {
-                throw new NotFoundException();
-            }
-            addEventsToList(eventList, resourceDateFolder);
-        } catch (LoginException e) {
-            throw new JcrException();
-        }
-        return eventList;
+        throw new UnsupportedOperationException();
     }
 
     private void addEventsToList(List<Event> eventList, Resource resourceDateFolder) {

@@ -35,16 +35,16 @@ public class EventHelper {
         for (Field field : fields) {
             try {
                 field.setAccessible(true);
-                if (field.isAnnotationPresent(NodeProperty.class)) {
-                    final String type = field.getType().getTypeName();
-                    if (type.equals("java.lang.String")) {
+                final Object fieldValue = field.get(event);
+                if (fieldValue != null && field.isAnnotationPresent(NodeProperty.class)) {
+                    final Class<?> clazz = field.getType();
+
+                    if (clazz == String.class) {
                         final String fieldName = field.getName();
-                        final Object fieldValue = field.get(event);
                         final String value = String.class.cast(fieldValue);
                         node.setProperty(fieldName, value);
-                    } else if (type.equals("java.util.Calendar")) {
+                    } else if (clazz == Calendar.class) {
                         final String fieldName = field.getName();
-                        final Object fieldValue = field.get(event);
                         final Calendar value = Calendar.class.cast(fieldValue);
                         node.setProperty(fieldName, value);
                     }

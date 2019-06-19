@@ -6,7 +6,7 @@
         cq:lastModifiedBy="admin"
         cq:template="/apps/aem-workbook/templates/page-content"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Create Event"
+        jcr:title="Create"
         sling:resourceType="aem-workbook/components/structure/content-page">
         <par
             jcr:primaryType="nt:unstructured"

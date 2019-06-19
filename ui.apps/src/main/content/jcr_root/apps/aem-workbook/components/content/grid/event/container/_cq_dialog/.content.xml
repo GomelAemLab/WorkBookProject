@@ -24,17 +24,18 @@
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <label
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                fieldDescription="The Path to an event location."
-                                                fieldLabel="Path to Events"
-                                                name="./objects/paths"/>
-                                            <path-field
+                                            <path-to-update
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                     fieldLabel="The path to update Page"
                                                     name="./pathToUpdate"
+                                                    required="{Boolean}true"
+                                                    rootPath="/content/aem-workbook"/>
+                                            <path-to-redirect
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="The path to redirect after a delete action"
+                                                    name="./redirectPath"
                                                     required="{Boolean}true"
                                                     rootPath="/content/aem-workbook"/>
                                         </items>
