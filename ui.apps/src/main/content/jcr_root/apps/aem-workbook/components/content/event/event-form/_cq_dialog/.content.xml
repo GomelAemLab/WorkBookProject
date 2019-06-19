@@ -20,6 +20,20 @@
                         name="./redirectPath"
                         required="{Boolean}true"
                         rootPath="/content/aem-workbook"/>
+                    <btn-text
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="text on the submit button"
+                            name="./btnText"
+                            required="{Boolean}true" />
+                    <isUpdateForm
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                            fieldDescription="check only if it's the form to update"
+                            text="type of form"
+                            value="{String}true"
+                            uncheckedValue="{String}false"
+                            name="./isUpdatedForm" />
                 </items>
             </container>
         </items>

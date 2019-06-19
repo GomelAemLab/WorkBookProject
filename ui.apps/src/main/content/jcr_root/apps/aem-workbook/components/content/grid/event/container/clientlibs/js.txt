@@ -1,2 +1,3 @@
 #base=js
 obtainIdToDelete.js
+updateOnClick.js

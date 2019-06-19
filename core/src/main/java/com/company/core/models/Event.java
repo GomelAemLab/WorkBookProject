@@ -1,10 +1,8 @@
 package com.company.core.models;
 
 import com.company.core.beans.NodeProperty;
-import com.google.gson.annotations.SerializedName;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
 
 import javax.inject.Inject;
 import java.util.Calendar;
@@ -21,8 +19,6 @@ public class Event {
     @NodeProperty
     @Inject
     private String eventName;
-
-    private String eventFolderPath;
 
     private String eventDateHtmlFormat;
 
@@ -62,13 +58,6 @@ public class Event {
 
     public void setEventUser(String eventUser) {
         this.eventUser = eventUser;
-    }
-
-    public String getEventFolderPath() {
-        return eventFolderPath;
-    }
-    public void setEventFolderPath(String eventFolderPath) {
-        this.eventFolderPath = eventFolderPath;
     }
 
     public String getId() {

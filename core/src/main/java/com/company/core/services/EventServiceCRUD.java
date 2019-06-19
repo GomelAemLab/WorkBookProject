@@ -5,15 +5,16 @@ import com.company.core.execption.NotFoundException;
 import com.company.core.models.Event;
 import com.company.core.execption.JcrException;
 import com.company.core.execption.ValidationError;
+import org.apache.sling.api.resource.LoginException;
 
 import java.util.Calendar;
 import java.util.List;
 
 public interface EventServiceCRUD {
 
-    String create(Event event) throws JcrException;
+    String create(String path, Event event) throws JcrException;
 
-    Event getEvent(String eventPath);
+    Event getEvent(String eventPath) throws LoginException, NotFoundException, JcrException;
 
     List<Event> getEvents(String userName);
 
