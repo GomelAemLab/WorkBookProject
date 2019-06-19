@@ -1,9 +1,17 @@
-<form action="/bin/event.form.html" method="post">
+<sly data-sly-use.eventModel="com.company.core.models.EventById"></sly>
+<sly data-sly-test.event="${eventModel.event}"></sly>
+
+
+<form action="/bin/event/form" method="post">
+    <sly data-sly-test.updateMode="${properties.isUpdatedForm}">
+        <input type="hidden" name="operation" value="put">
+        <input type="hidden" name="id" value="${event.id}">
+    </sly>
     <div class="jumbotron">
         <div class="form-group row">
             <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Event Title</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-lg" name="eventName">
+                <input type="text" class="form-control form-control-lg" name="eventName" value="${event.eventName}">
             </div>
         </div>
 
@@ -11,13 +19,15 @@
             <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Select Date</label>
             <div class="col-sm-10">
                 <input type="date" class="form-control form-control-lg" name="eventDateHtmlFormat"
+                       value="${event.eventDateHtmlFormat}"
+                       data-sly-attribute.block="${updateMode}"
                        placeholder="col-form-label-lg">
             </div>
         </div>
         <div class="form-group row">
             <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Select Time</label>
             <div class="col-sm-10">
-                <input type="time" class="form-control form-control-lg" name="eventTime"
+                <input type="time" class="form-control form-control-lg" name="eventTime" value="${event.eventTime}"
                        placeholder="col-form-label-lg">
             </div>
         </div>
@@ -25,12 +35,13 @@
         <div class="form-group row">
             <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">User Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control form-control-lg" name="eventUser" placeholder="event holder">
+                <input type="text" class="form-control form-control-lg" name="eventUser" value="${event.eventUser}"
+                       placeholder="event holder">
             </div>
         </div>
 
         <div class="text-right">
-            <button type="submit" class="btn btn-primary btn-lg">Create</button>
+            <button type="submit" class="btn btn-primary btn-lg">${properties.btnText}</button>
         </div>
         <input type="hidden" name="redirectPath" value=${properties.redirectPath}>
     </div>

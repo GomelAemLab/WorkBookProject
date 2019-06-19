@@ -9,10 +9,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 
-import static com.company.core.constants.Constants.*;
+import static com.company.core.constants.Constants.DATE_ERROR_MSG;
 
 public class DateHelper {
 
+    private static final int CALENDAR_DIFF = 1;
     private String date;
     private String time;
     private boolean isTime;
@@ -26,14 +27,22 @@ public class DateHelper {
         this.date = date;
     }
 
-    public DateHelper(String date, String time) {
+    public DateHelper(String date, String time) throws ValidationError {
         this.date = date;
         this.time = time;
+        this.validate();
     }
 
-    public String validateAndGetPath() throws ValidationError {
+    public DateHelper(Calendar calendar) {
+        this.year = calendar.get(Calendar.YEAR);
+        this.month = calendar.get(Calendar.MONTH) + CALENDAR_DIFF;
+        this.day = calendar.get(Calendar.DAY_OF_MONTH);
+        this.hours = calendar.get(Calendar.HOUR);
+        this.minutes = calendar.get(Calendar.MINUTE);
+    }
 
-        String path;
+    void validate() throws ValidationError {
+
         try {
             if (Strings.isNullOrEmpty(date)) {
                 throw new ValidationError(DATE_ERROR_MSG);
@@ -45,30 +54,39 @@ public class DateHelper {
                 minutes = parsedTime.getMinute();
                 isTime = true;
             }
-            final StringBuilder sb = new StringBuilder(EVENT_PATH);
+
             this.year = parsedDate.getYear();
-            sb.append(year);
-            sb.append(FOLDER_SEPARATOR);
             this.month = parsedDate.getMonthValue();
-            sb.append(month);
-            sb.append(FOLDER_SEPARATOR);
             this.day = parsedDate.getDayOfMonth();
-            sb.append(day);
-            path = sb.toString();
+
         } catch (DateTimeParseException e) {
             throw new ValidationError(DATE_ERROR_MSG);
         }
-        return path;
     }
 
     public Calendar getDate() {
         Calendar calendar = Calendar.getInstance();
-        int calendarMonthZeroBased = month - 1;
+        int calendarMonthZeroBased = month - CALENDAR_DIFF;
         calendar.set(year, calendarMonthZeroBased, day);
         if (isTime) {
             calendar.set(Calendar.HOUR, hours);
             calendar.set(Calendar.MINUTE, minutes);
         }
         return calendar;
+    }
+
+    public String getDateHTML() {
+        final DateTimeFormatter isoDate = DateTimeFormatter.ISO_DATE;
+        return isoDate.format(LocalDate.of(year, month, day));
+    }
+
+    public String getTime() {
+        final DateTimeFormatter isoDate = DateTimeFormatter.ISO_LOCAL_TIME;
+        return isoDate.format(LocalTime.of(hours, minutes));
+    }
+
+    public String getDatePath() {
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY/MM/dd");
+        return formatter.format(LocalDate.of(year, month, day));
     }
 }
