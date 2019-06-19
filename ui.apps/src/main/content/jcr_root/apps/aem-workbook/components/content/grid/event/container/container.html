@@ -1,6 +1,7 @@
 <!-- The container of Events -->
-<div>Container</div>
-
+<sly data-sly-test="${!wcmmode.disabled}">
+    <div>Events Container</div>
+</sly>
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -48,3 +49,9 @@
         </div>
     </sly>
 </sly>
+<!--/* TODO:
+    1. Add pagination functionality to this component;
+    2. Add dialog to be able configure:
+        a) count of items per page;
+        b) order of items(start from the closest/furthest events).
+*/-->
