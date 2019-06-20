@@ -4,4 +4,4 @@
     allowProxy="{Boolean}true"
     categories="[aem-workbook.base]"
     dependencies="[aem-workbook.libs]"
-    embed="[core.wcm.components.image.v2,core.wcm.components.breadcrumb.v2,core.wcm.components.search.v1,core.wcm.components.form.text.v2,aem-workbook.breadcrumb]"/>
+    embed="[core.wcm.components.image.v2,core.wcm.components.breadcrumb.v2,core.wcm.components.search.v1,core.wcm.components.form.text.v2,aem-workbook.breadcrumb,aem-workbook.carousel]"/>
