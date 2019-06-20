@@ -79,7 +79,9 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
                 throw new NotFoundException();
             }
             event = resource.adaptTo(Event.class);
-            event.setId(eventPath);
+            if (event != null) {
+                event.setId(getId(event.getEventDate(), resource.getName()));
+            }
         } catch (LoginException e) {
             throw new JcrException();
         }
@@ -100,8 +102,7 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
         resourceDateFolder.getChildren().forEach(resource -> {
                     final Event ev = resource.adaptTo(Event.class);
                     if (ev != null) {
-                        DateHelper dateHelper = new DateHelper(ev.getEventDate());
-                        ev.setId(dateHelper.getDatePath() + FOLDER_SEPARATOR + resource.getName());
+                        ev.setId(getId(ev.getEventDate(), resource.getName()));
                         eventList.add(ev);
                     }
                 }
@@ -137,14 +138,13 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
     public void update(Event event) throws JcrException, NotFoundException {
         try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
 
-            final String path = event.getId();
-            final Resource resource = resolver.getResource(path);
+            final String id = event.getId();
+            final Resource resource = resolver.getResource(EVENT_PATH+id);
             if (resource == null) {
                 throw new NotFoundException();
             }
             final Node eventNode = resource.adaptTo(Node.class);
             new EventHelper().setPropertiesToNode(event, eventNode);
-
             resolver.commit();
         } catch (LoginException | RepositoryException | PersistenceException e) {
             throw new JcrException(e.getMessage());
@@ -184,5 +184,10 @@ public class EventServiceCRUDImpl implements EventServiceCRUD {
         } catch (LoginException | RepositoryException | PersistenceException e) {
             throw new JcrException();
         }
+    }
+
+    private String getId(Calendar calendar, String nodeName) {
+        final DateHelper dateHelper = new DateHelper(calendar);
+        return dateHelper.getDatePath() + FOLDER_SEPARATOR + nodeName;
     }
 }

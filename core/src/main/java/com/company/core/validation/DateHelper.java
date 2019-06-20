@@ -10,11 +10,13 @@ import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 
 import static com.company.core.constants.Constants.DATE_ERROR_MSG;
+import static com.company.core.constants.Constants.DATE_PATTERN;
 
 public class DateHelper {
 
     private static final int CALENDAR_DIFF = 1;
     private String date;
+    private String datePattern;
     private String time;
     private boolean isTime;
     private int year;
@@ -33,6 +35,12 @@ public class DateHelper {
         this.validate();
     }
 
+    public DateHelper(String date, String time, String datePattern) throws ValidationError {
+        this.date = date;
+        this.time = time;
+        this.datePattern = datePattern;
+        this.validate();
+    }
     public DateHelper(Calendar calendar) {
         this.year = calendar.get(Calendar.YEAR);
         this.month = calendar.get(Calendar.MONTH) + CALENDAR_DIFF;
@@ -47,7 +55,13 @@ public class DateHelper {
             if (Strings.isNullOrEmpty(date)) {
                 throw new ValidationError(DATE_ERROR_MSG);
             }
-            LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ISO_DATE);
+            DateTimeFormatter formatter;
+            if (Strings.isNullOrEmpty(this.datePattern)) {
+                formatter = DateTimeFormatter.ISO_DATE;
+            } else {
+                formatter = DateTimeFormatter.ofPattern(this.datePattern);
+            }
+            LocalDate parsedDate = LocalDate.parse(date, formatter);
             if (!Strings.isNullOrEmpty(time)) {
                 final LocalTime parsedTime = LocalTime.parse(time, DateTimeFormatter.ISO_TIME);
                 hours = parsedTime.getHour();
@@ -86,7 +100,7 @@ public class DateHelper {
     }
 
     public String getDatePath() {
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY/MM/dd");
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
         return formatter.format(LocalDate.of(year, month, day));
     }
 }

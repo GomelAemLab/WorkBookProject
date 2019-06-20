@@ -93,6 +93,11 @@ public class EventFormServlet extends SlingAllMethodsServlet {
             Map<String, String[]> parameterMap = req.getParameterMap();
             EventHelper helper = new EventHelper();
             Event event = helper.fromMap(parameterMap);
+            String id = event.getId();
+            int lastIndexOfSeparator = id.lastIndexOf(FOLDER_SEPARATOR);
+            String data = id.substring(0,lastIndexOfSeparator);
+            DateHelper dateHelper = new DateHelper(data, event.getEventTime(), DATE_PATTERN);
+            event.setEventDate(dateHelper.getDate());
             String pathToRedirect = parameterMap.get(REDIRECT_PATH)[0];
             new EventValidation(event).validate(false);
             serviceCRUD.update(event);
