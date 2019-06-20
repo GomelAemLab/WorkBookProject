@@ -2,24 +2,14 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:vlt="http://www.day.com/jcr/vault/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="nt:unstructured"
         jcr:title="Default Design"
         sling:resourceType="wcm/core/components/designer">
-        <formpage jcr:primaryType="nt:unstructured">
-            <par
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="foundation/components/parsys"
-                components="group:Form">
-                <section jcr:primaryType="nt:unstructured"/>
-            </par>
-        </formpage>
         <page jcr:primaryType="nt:unstructured">
             <par
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/parsys"
-                components="[group:General,group:aem-workbook,group:Columns,group:Demo]">
+                components="[group:General,group:aem-workbook,group:Demo]">
             </par>
         </page>
         <content-page jcr:primaryType="nt:unstructured">
@@ -27,7 +17,6 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/parsys"
                 components="[group:General,group:aem-workbook,group:Demo]">
-                <section jcr:primaryType="nt:unstructured"/>
             </par>
         </content-page>
     </jcr:content>
