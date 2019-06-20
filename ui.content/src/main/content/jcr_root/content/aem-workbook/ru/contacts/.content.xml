@@ -2,8 +2,7 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2019-05-31T14:36:06.498+03:00"
-        cq:lastModifiedBy="admin"
+        cq:designPath="/libs/settings/wcm/designs/aem-workbook"
         cq:lastTranslationUpdate="{Date}2019-05-30T16:52:24.269+03:00"
         cq:template="/apps/aem-workbook/templates/page-content"
         cq:translationSourcePath="/content/aem-workbook/en/contacts"
@@ -14,36 +13,20 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/parsys">
             <title
-                jcr:created="{Date}2019-05-27T15:21:47.161+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-05-31T14:33:11.427+03:00"
-                jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 jcr:title="Контакты"
                 sling:resourceType="wcm/foundation/components/title"/>
             <text
-                jcr:created="{Date}2019-05-27T15:22:38.490+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-05-31T14:33:22.853+03:00"
-                jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="weretail/components/content/text"
                 text="&lt;p>&lt;b>Разработано:&lt;/b>&lt;/p>&#xa;&lt;ul>&#xa;&lt;li>Pavel Ambrosimau&lt;/li>&#xa;&lt;li>Gregory Yesman&lt;/li>&#xa;&lt;li>Eduard Chikichev&lt;/li>&#xa;&lt;li>Pavel Prymachou&lt;/li>&#xa;&lt;/ul>&#xa;&lt;p>&amp;nbsp;&lt;/p>&#xa;"
                 textIsRich="true"/>
             <title_909877697
-                jcr:created="{Date}2019-05-27T15:29:11.202+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-05-31T14:35:22.019+03:00"
-                jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 jcr:title="Подведение итога:"
                 sling:resourceType="wcm/foundation/components/title"
                 type="h4"/>
             <text_1236869453
-                jcr:created="{Date}2019-05-27T15:35:26.101+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-05-31T14:36:06.492+03:00"
-                jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/text"
                 text="&lt;p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Разнообразный и богатый опыт реализация намеченных плановых заданий позволяет выполнять важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач. Идейные соображения высшего порядка, а также консультация с широким активом требуют от нас анализа новых предложений. Не следует, однако забывать, что начало повседневной работы по формированию позиции требуют определения и уточнения новых предложений.&lt;/p>&#xa;&lt;p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Идейные соображения высшего порядка, а также новая модель организационной деятельности способствует подготовки и реализации новых предложений. Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности влечет за собой процесс внедрения и модернизации модели развития. Товарищи! новая модель организационной деятельности позволяет оценить значение модели развития. С другой стороны сложившаяся структура организации влечет за собой процесс внедрения и модернизации дальнейших направлений развития.&lt;/p>&#xa;&lt;p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Не следует, однако забывать, что постоянный количественный рост и сфера нашей активности обеспечивает широкому кругу (специалистов) участие в формировании соответствующий условий активизации. Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий способствует подготовки и реализации форм развития. Не следует, однако забывать, что постоянное информационно-пропагандистское обеспечение нашей деятельности требуют от нас анализа модели развития. Идейные соображения высшего порядка, а также сложившаяся структура организации представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям. Разнообразный и богатый опыт реализация намеченных плановых заданий играет важную роль в формировании систем массового участия. С другой стороны дальнейшее развитие различных форм деятельности требуют от нас анализа существенных финансовых и административных условий.&lt;/p>&#xa;&lt;p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Разнообразный и богатый опыт постоянный количественный рост и сфера нашей активности влечет за собой процесс внедрения и модернизации существенных финансовых и административных условий. Разнообразный и богатый опыт сложившаяся структура организации требуют определения и уточнения соответствующий условий активизации. Товарищи! рамки и место обучения кадров обеспечивает широкому кругу (специалистов) участие в формировании направлений прогрессивного развития.&lt;/p>&#xa;"

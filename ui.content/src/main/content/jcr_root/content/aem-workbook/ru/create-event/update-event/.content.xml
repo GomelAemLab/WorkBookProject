@@ -2,11 +2,7 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:cloudserviceconfigs="[cloudconfigs/translation/translationcfg/default_translation]"
-        cq:conf=""
-        cq:lastModified="{Date}2019-06-19T12:39:29.166+03:00"
-        cq:lastModifiedBy="admin"
-        cq:lastTranslationUpdate="{Date}2019-06-19T12:07:09.554+03:00"
+        cq:designPath="/libs/settings/wcm/designs/aem-workbook"
         cq:template="/apps/aem-workbook/templates/page-content"
         cq:translationSourcePath="/content/aem-workbook/en/create-event/update-event"
         jcr:primaryType="cq:PageContent"
@@ -16,17 +12,9 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/parsys">
             <title
-                jcr:created="{Date}2019-06-18T12:09:52.600+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-06-18T12:09:52.600+03:00"
-                jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="aem-workbook/components/content/title"/>
             <event_form
-                jcr:created="{Date}2019-06-18T12:09:11.744+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2019-06-19T12:39:29.163+03:00"
-                jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="aem-workbook/components/content/event/event-form"
                 btnText="Update"
