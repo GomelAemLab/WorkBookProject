@@ -2,7 +2,7 @@
 <workspaceFilter version="1.0">
     <filter root="/conf/aem-workbook"/>
     <filter root="/content/aem-workbook"/>
-    <filter root="/libs/settings/wcm/designs/default/jcr:content" mode="merge"/>
+    <filter root="/libs/settings/wcm/designs/aem-workbook"/>
     <filter root="/content/dam/aem-workbook"/>
     <filter root="/home/users/system/aem-workbook" mode="merge"/>
     <filter root="/content/events" mode="merge"/>
