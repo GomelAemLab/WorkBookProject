@@ -1,4 +1,4 @@
-const URL = '/bin/event';
+const URL = '/bin/event/json';
 const BUTTON_CLASS = 'eventSave';
 const FORM_SELECTOR = '.event-wrapper';
 
