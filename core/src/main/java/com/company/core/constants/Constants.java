@@ -20,8 +20,6 @@ public class Constants {
 
     public static final String JOB_TOPIC_EVENT_CREATED = "com/sling/events/job";
     public static final String JOB_PROPERTY_EVENT_PATH = "event_path";
-    public static final String FORM_SELECTOR = "form";
-    public static final String JSON_SELECTOR = "json";
     public static final String REDIRECT_PATH = "redirectPath";
     public static final String ID = "id";
     public static final String OPERATION = "operation";
@@ -29,4 +27,5 @@ public class Constants {
     public static final String HOME_ROOT_PAGE_LOCALE_DEFAULT = PATH_DIVIDER + "en";
     public static final String HOME_ROOT_PAGE_PATH_DEFAULT = HOME_ROOT_PAGE_PATH + HOME_ROOT_PAGE_LOCALE_DEFAULT;
 
+    public static final String DATE_PATTERN = "yyyy/MM/dd";
 }
