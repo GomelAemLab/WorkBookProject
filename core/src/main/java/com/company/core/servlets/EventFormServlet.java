@@ -81,7 +81,8 @@ public class EventFormServlet extends SlingAllMethodsServlet {
         } catch (IOException e) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         } catch (JcrException | ValidationError e) {
-            resp.sendError(e.getStatusCode(), e.getMessage());
+            req.setAttribute(ERROR_MESSAGE_PARAMETER, e.getMessage());
+            resp.setStatus(e.getStatusCode());
         }
     }
 
@@ -95,7 +96,7 @@ public class EventFormServlet extends SlingAllMethodsServlet {
             Event event = helper.fromMap(parameterMap);
             String id = event.getId();
             int lastIndexOfSeparator = id.lastIndexOf(FOLDER_SEPARATOR);
-            String data = id.substring(0,lastIndexOfSeparator);
+            String data = id.substring(0, lastIndexOfSeparator);
             DateHelper dateHelper = new DateHelper(data, event.getEventTime(), DATE_PATTERN);
             event.setEventDate(dateHelper.getDate());
             String pathToRedirect = parameterMap.get(REDIRECT_PATH)[0];
@@ -105,7 +106,8 @@ public class EventFormServlet extends SlingAllMethodsServlet {
         } catch (IOException e) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         } catch (JcrException | ValidationError | NotFoundException e) {
-            resp.sendError(e.getStatusCode(), e.getMessage());
+            req.setAttribute(ERROR_MESSAGE_PARAMETER, e.getMessage());
+            resp.setStatus(e.getStatusCode());
         }
     }
 

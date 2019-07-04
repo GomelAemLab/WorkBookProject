@@ -4,17 +4,17 @@ import com.company.core.services.EventServiceCRUD;
 import com.company.core.validation.DateHelper;
 import com.google.common.base.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.company.core.constants.Constants.EVENT_PATH;
-import static com.company.core.constants.Constants.ID;
+import static com.company.core.constants.Constants.*;
 
 @Model(adaptables = SlingHttpServletRequest.class)
-public class EventById {
+public class FormEventModel {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -39,6 +39,11 @@ public class EventById {
             logger.error(e.getMessage(), e);
         }
         return ev;
+    }
+
+    public String errorMessage() {
+        RequestParameter errMessageParameter = request.getRequestParameter(ERROR_MESSAGE_PARAMETER);
+        return errMessageParameter != null ? errMessageParameter.getString() : null;
     }
 }
 
