@@ -13,21 +13,19 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.*;
 import java.io.IOException;
 
-import static com.company.core.constants.Constants.ERROR_MESSAGE_PARAMETER;
+import static com.company.core.constants.Constants.*;
 
 @Component(service = Filter.class,
         property = {
                 Constants.SERVICE_DESCRIPTION + "=event post filter",
-                EngineConstants.SLING_FILTER_SCOPE + "=" + EngineConstants.FILTER_SCOPE_REQUEST,
-                EngineConstants.SLING_FILTER_PATTERN + "=/bin/event/form",
-                "sling.filter.methods" + "=" + HttpConstants.METHOD_POST,
-                Constants.SERVICE_RANKING + ":Integer=" + Integer.MAX_VALUE
+                EngineConstants.SLING_FILTER_SCOPE + EQUALITY_SYMBOL + EngineConstants.FILTER_SCOPE_REQUEST,
+                EngineConstants.SLING_FILTER_PATTERN + EQUALITY_SYMBOL + "/bin/event/form",
+                "sling.filter.methods" + EQUALITY_SYMBOL + HttpConstants.METHOD_POST,
+                Constants.SERVICE_RANKING + ":Integer" + EQUALITY_SYMBOL + Integer.MAX_VALUE
         })
 public class FormErrorRedirectFilter implements Filter {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    private static final String POST_REDIRECT_PATH = "/content/aem-workbook/en/create-event.html?";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -43,9 +41,15 @@ public class FormErrorRedirectFilter implements Filter {
         SlingHttpServletResponse slingHttpServletResponse = (SlingHttpServletResponse) response;
 
         if (slingHttpServletResponse.getStatus() == HttpStatus.SC_UNPROCESSABLE_ENTITY) {
+            String referer = ((SlingHttpServletRequest) request).getHeader(HEADER_REFERER);
+            if (referer.contains(URL_DELIMITER_QUERY_PARAM)) {
+                slingHttpServletResponse.sendRedirect(referer + URL_CONCAT_QUERY_PARAM + ERROR_MESSAGE_PARAMETER +
+                        EQUALITY_SYMBOL + request.getAttribute(ERROR_MESSAGE_PARAMETER));
+            } else {
+                slingHttpServletResponse.sendRedirect(referer + URL_DELIMITER_QUERY_PARAM + ERROR_MESSAGE_PARAMETER +
+                        EQUALITY_SYMBOL + request.getAttribute(ERROR_MESSAGE_PARAMETER));
+            }
 
-            slingHttpServletResponse.sendRedirect(POST_REDIRECT_PATH + ERROR_MESSAGE_PARAMETER +
-                    "=" + request.getAttribute(ERROR_MESSAGE_PARAMETER));
             logger.error("Request [{}] was redirected by reason: {}",
                     ((SlingHttpServletRequest) request).getRequestPathInfo().getResourcePath(),
                     request.getAttribute(ERROR_MESSAGE_PARAMETER));

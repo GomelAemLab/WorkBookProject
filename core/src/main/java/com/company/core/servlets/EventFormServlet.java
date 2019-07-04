@@ -106,7 +106,8 @@ public class EventFormServlet extends SlingAllMethodsServlet {
         } catch (IOException e) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         } catch (JcrException | ValidationError | NotFoundException e) {
-            resp.sendError(e.getStatusCode(), e.getMessage());
+            req.setAttribute(ERROR_MESSAGE_PARAMETER, e.getMessage());
+            resp.setStatus(e.getStatusCode());
         }
     }
 
