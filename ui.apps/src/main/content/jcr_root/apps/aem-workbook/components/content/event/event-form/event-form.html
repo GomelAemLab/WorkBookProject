@@ -1,6 +1,11 @@
-<sly data-sly-use.eventModel="com.company.core.models.EventById"></sly>
+<sly data-sly-use.eventModel="com.company.core.models.FormEventModel"></sly>
 <sly data-sly-test.event="${eventModel.event}"></sly>
 
+<sly data-sly-test="${eventModel.errorMessage}">
+    <div class="alert alert-danger" role="alert">
+        ${eventModel.errorMessage.toUpperCase}
+    </div>
+</sly>
 
 <form action="/bin/event/form" method="post">
     <sly data-sly-test.updateMode="${properties.isUpdatedForm}">

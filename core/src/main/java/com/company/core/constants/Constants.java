@@ -28,4 +28,6 @@ public class Constants {
     public static final String HOME_ROOT_PAGE_PATH_DEFAULT = HOME_ROOT_PAGE_PATH + HOME_ROOT_PAGE_LOCALE_DEFAULT;
 
     public static final String DATE_PATTERN = "yyyy/MM/dd";
+
+    public static final String ERROR_MESSAGE_PARAMETER = "errMessage";
 }
